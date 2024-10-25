@@ -1,0 +1,7 @@
+**tmp**
+**cache**
+**venv**
+
+**.DS_Store
+
+!.git*
