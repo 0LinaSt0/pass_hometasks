@@ -4,4 +4,5 @@
 
 **.DS_Store
 
-!.git*
+!**.git*
+!**/tmp_results
