@@ -10,21 +10,15 @@
 
     <!-- Section 1: Select photo from database -->
     <h2>Выбрать фото для сравнения с другими фото из базы данных</h2>
-    <div>
-        {% for photo in photos %}
-        <div>
-            <img src="{{ url_for('static', path=path_pictures + photo.filename) }}" alt="{{ photo.filename }}" width="100">
-            <p>{{ photo.filename }}</p>
-        </div>
-        {% endfor %}
+    <div id="table-container">
+        {{ table_content | safe }}
     </div>
 
     <!-- Section 2: Upload photo for comparing -->
-    <h2>Выбрать локальное фото для сравнения с фото из базы</h2>
+    <h2>Выбрать локальное фото для сравнения со всеми фото из базы</h2>
     <form action="/compare/" method="post" enctype="multipart/form-data">
         <input type="file" name="compare_file" acept="image/*", required />
-        <input type="submit" value="Загрузить" />
-
+        <input type="submit" value="Загрузить для сравнения" />
     </form>
 
     <!-- Section 3: Upload new photo -->
@@ -32,6 +26,7 @@
     <form action="/upload/" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" required />
         <input type="submit" value="Загрузить" />
+        <textarea name="about" placeholder="Описание для фото (необязательно)"></textarea>
     </form>
 </body>
 </html>

@@ -25,6 +25,7 @@ class Photo(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     filename = Column(String, index=True)
+    about = Column(String, index=True)
 
 
 def get_db():
