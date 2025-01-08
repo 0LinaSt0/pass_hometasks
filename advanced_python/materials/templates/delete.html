@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<body>
+    <form id="delete-form">
+        <label for="id">Введите ID номер для удаления фото:</label>
+        <input type="number" id="image_id" name="image_id" required />
+        <button type="submit">Удалить фото</button>
+    </form>
+    
+    <script>
+    document.getElementById('delete-form').onsubmit = async function(event) {
+        event.preventDefault();
+    
+        const formData = new FormData(this);
+        const response = await fetch('/delete-image/', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        // pop-windows result
+        alert(result.message);
+
+        location.reload();
+    };
+    </script>
+</body>

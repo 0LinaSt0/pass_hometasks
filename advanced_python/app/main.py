@@ -1,7 +1,10 @@
+import os
+
 from fastapi import (
     FastAPI,
     Request,
     UploadFile,
+    HTTPException,
     File,
     Depends,
     Form
@@ -35,18 +38,28 @@ async def read_root(
 ):
     photos = db.query(Photo).all()
 
-    table_content = templates.TemplateResponse("table_template.html", {
-        "request": request,
-        'photos': photos,
-        'path_pictures': PATH_PICTURES
-    }).body.decode()
+    table_content = templates.TemplateResponse(
+        HTML_TEMPLATES['imges_table'],
+        {
+            'request': request,
+            'photos': photos,
+            'path_pictures': PATH_PICTURES
+        }
+    ).body.decode()
+
+    delete_content = templates.TemplateResponse(\
+        HTML_TEMPLATES['delete'],
+        {'request': request}
+    ).body.decode()
 
     return templates.TemplateResponse(
         HTML_TEMPLATES['root'],
         {
             'request': request,
-            'table_content': table_content
-    })
+            'table_content': table_content,
+            'delete_content': delete_content,
+        }
+    )
 
 
 @app.post('/upload/')
@@ -58,12 +71,13 @@ async def upload_picture(
     valid_data = PhotoUpload(filename=file.filename, about=about)
     filepath = PATH_PICTURES + valid_data.filename
 
-    with open(filepath, "wb") as f:
+    with open(filepath, 'wb') as f:
         content = await file.read()
         f.write(content)
 
     new_photo = Photo(
         filename=valid_data.filename, 
+        filepath=filepath,
         about=valid_data.about
     )
     db.add(new_photo)
@@ -72,10 +86,31 @@ async def upload_picture(
 
 
 
-@app.post("/find/")
+@app.post('/find/')
 async def find_comparations(
     selected_photo: int = Form(...), 
     db: Session = Depends(get_db)
 ):
     # TODO: REALIZE LOGIC WITH COMPARATION PHOTOS
     return {'selected_photo': selected_photo}
+
+
+
+@app.post('/delete-image/')
+def delete_image(
+    image_id: int = Form(...),
+    db: Session = Depends(get_db)
+):
+    image = db.query(Photo).filter(Photo.id == image_id).first()
+
+    if not image:
+        return {"status": "error", "message": "Фото с таким id не найдено!"}
+
+    if os.path.exists(filepath := (BASE_DIR + image.filepath)):
+        os.remove(filepath)
+
+    
+    db.delete(image)
+    db.commit()
+
+    return {"status": "success", "message": "Фото успешно удалено"}

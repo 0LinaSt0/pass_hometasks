@@ -9,7 +9,8 @@ DIR_TEMPLATES = 'materials/templates/'
 
 HTML_TEMPLATES = {
     'root': 'index.html',
-    'upload': ''
+    'imges_table': 'table_template.html',
+    'delete': 'delete.html'
 }
 
 PATH_PICTURES = 'materials/pictures/'

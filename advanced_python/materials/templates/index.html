@@ -28,5 +28,11 @@
         <input type="submit" value="Загрузить" />
         <textarea name="about" placeholder="Описание для фото (необязательно)"></textarea>
     </form>
+
+    <!-- Section 4: Remote photo from db -->
+    <h2>Здесь можно удалить фото из базы данных по его id</h2>
+    <div id="delete-content">
+        {{ delete_content | safe }}
+    </div>
 </body>
 </html>
