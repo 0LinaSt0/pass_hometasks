@@ -4,7 +4,6 @@ from fastapi import (
     FastAPI,
     Request,
     UploadFile,
-    HTTPException,
     File,
     Depends,
     Form
