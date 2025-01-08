@@ -18,6 +18,7 @@ from utils.config import (
     PATH_PICTURES, 
     BASE_DIR
 )
+from utils.pydantic_validation import PhotoUpload
 from utils.sqler import Photo, get_db
 
 
@@ -54,13 +55,17 @@ async def upload_picture(
     about: str = Form(None),
     db: Session = Depends(get_db)
 ):
-    filepath = PATH_PICTURES + file.filename
+    valid_data = PhotoUpload(filename=file.filename, about=about)
+    filepath = PATH_PICTURES + valid_data.filename
 
     with open(filepath, "wb") as f:
         content = await file.read()
         f.write(content)
 
-    new_photo = Photo(filename=file.filename, about=about)
+    new_photo = Photo(
+        filename=valid_data.filename, 
+        about=valid_data.about
+    )
     db.add(new_photo)
     db.commit()
     return RedirectResponse(url='/', status_code=303)
