@@ -4,6 +4,7 @@ from fastapi import (
     FastAPI,
     Request,
     UploadFile,
+    BackgroundTasks,
     File,
     Depends,
     Form
@@ -60,6 +61,27 @@ async def read_root(
         }
     )
 
+@app.post("/wait/")
+async def waiting_comparation(
+    image: UploadFile = File(...), 
+    background_tasks: BackgroundTasks
+):
+    background_tasks.add_task(
+        # TODO: process_image, 
+        image
+    )
+    return templates.TemplateResponse("waiting.html", {"request": Request})
+
+
+@app.get("/result/")
+async def get_result():
+    # This should ideally check if the processing is complete and return results.
+    
+    # TODO: To do result comparation
+    result = "Comparison Result"  # Replace with actual result fetching logic
+    return templates.TemplateResponse("comparation_result.html", {"request": Request, "result": result})
+
+
 
 @app.post('/upload/')
 async def upload_picture(
@@ -85,8 +107,8 @@ async def upload_picture(
 
 
 
-@app.post('/find/')
-async def find_comparations(
+@app.post('/compare/')
+async def photo_comparations(
     selected_photo: int = Form(...), 
     db: Session = Depends(get_db)
 ):

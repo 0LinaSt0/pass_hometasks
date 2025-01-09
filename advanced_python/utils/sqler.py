@@ -30,27 +30,27 @@ class Photo(Base):
     filepath = Column(String, index=True)
     about = Column(String, index=True)
 
-    face_encodings = relationship(
-        'FaceEncodings', 
-        back_populates='photos',
-        cascade='all, delete-orphan'
-    )
+    # face_encodings = relationship(
+    #     'FaceEncodings', 
+    #     back_populates='photos',
+    #     cascade='all, delete-orphan'
+    # )
 
 
 
-class FaceEncodings(Base):
-    '''
-    If there are some faces on one photo, where are added
-    every finded face as new row. So, one photo can have
-    more than one face_encodings.
-    '''
-    __tablename__ = 'face_encodings'
+# class FaceEncodings(Base):
+#     '''
+#     If there are some faces on one photo, where are added
+#     every finded face as new row. So, one photo can have
+#     more than one face_encodings.
+#     '''
+#     __tablename__ = 'face_encodings'
 
-    id = Column(Integer, primary_key=True, index=True)
-    photo_id = Column(Integer, ForeignKey('photo.id'), nullable=False)
-    encoding = Column(ARRAY(float), nullable=False)
+#     id = Column(Integer, primary_key=True, index=True)
+#     photo_id = Column(Integer, ForeignKey('photo.id'), nullable=False)
+#     encoding = Column(ARRAY(float), nullable=False)
 
-    photo = relationship('Photo', back_populates='face_encodings')
+#     photo = relationship('Photo', back_populates='face_encodings')
 
 
 
