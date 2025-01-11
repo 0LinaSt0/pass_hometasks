@@ -63,13 +63,15 @@ async def read_root(
 
 @app.post("/wait/")
 async def waiting_comparation(
+    background_tasks: BackgroundTasks,
     image: UploadFile = File(...), 
-    background_tasks: BackgroundTasks
 ):
-    background_tasks.add_task(
-        # TODO: process_image, 
-        image
-    )
+    # Define process_image function
+    async def process_image(image: UploadFile):
+        # TODO: process_image,
+        pass
+
+    background_tasks.add_task(process_image, image)
     return templates.TemplateResponse("waiting.html", {"request": Request})
 
 
