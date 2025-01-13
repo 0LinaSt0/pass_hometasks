@@ -1,6 +1,7 @@
 from deep_translator import GoogleTranslator
 
 from pydantic import BaseModel, field_validator
+from utils.config import PATH_PICTURES
 
 
 class PhotoUpload(BaseModel):
@@ -23,6 +24,11 @@ class PhotoUpload(BaseModel):
         new_value = translated_filename + extention_filename
 
         return new_value
+
+
+    @property
+    def filepath(self):
+        return PATH_PICTURES + self.filename
     
 
 

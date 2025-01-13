@@ -15,6 +15,8 @@ from fastapi.templating import Jinja2Templates
 
 from sqlalchemy.orm import Session
 
+from app.utils import file_uploader, database_updater
+
 from utils.config import (
     DIR_TEMPLATES, 
     HTML_TEMPLATES, 
@@ -30,8 +32,7 @@ from utils.sqler import (
     get_db
 )
 
-from face_comparator.utils import encoding_to_json
-from face_comparator.face_detector import FaceDetection
+
 
 
 app = FastAPI()
@@ -78,39 +79,14 @@ async def waiting_comparation(
     db: Session = Depends(get_db)
 ):
     if image:
-        ...
-        # async def save_tmp_photo_info(image: UploadFile):
-        #     valid_data = PhotoUpload(filename=image.filename)
-        #     filepath = PATH_TMP_PICTURES + valid_data.filename
+        async def save_tmp_photo_info(image: UploadFile):
+            valid_data = await file_uploader(image)
 
-        #     with open(filepath, 'wb') as f:
-        #         content = await image.read()
-        #         f.write(content)
+            new_tmp_photo = await database_updater(valid_data, Photo, db)
 
-        #     new_tmp_photo = TmpPhoto(
-        #         filename=valid_data.filename, 
-        #         filepath=filepath,
-        #         about=valid_data.about
-        #     )
-
-        #     photo_encoding = encoding_to_json(
-        #       FaceDetection.get_face_encoding_by_img_path(
-        #         new_tmp_photo.filepath
-        #     ))
-
-        #     tmp_photo_encoding = FaceEncodings(
-        #         photo_id=new_tmp_photo.id,
-        #         photo_type='tmp_photo',
-        #         encoding=photo_encoding
-        #     )
-
-
-        #     db.add(new_tmp_photo)
-        #     db.add(tmp_photo_encoding)
-        #     db.commit()
-        #     return new_tmp_photo.id
+            return new_tmp_photo.id
     
-        # image_id = background_tasks.add_task(save_tmp_photo_info, image)
+        image_id = background_tasks.add_task(save_tmp_photo_info, image)
     
     # Define process_image function
     async def process_image(image_id: int):
@@ -137,37 +113,9 @@ async def upload_picture(
     about: str = Form(None),
     db: Session = Depends(get_db)
 ):
-    valid_data = PhotoUpload(filename=file.filename, about=about)
-    filepath = PATH_PICTURES + valid_data.filename
+    valid_data = await file_uploader(file, about=about)
 
-    with open(filepath, 'wb') as f:
-        content = await file.read()
-        f.write(content)
-
-    new_photo = Photo(
-        filename=valid_data.filename, 
-        filepath=filepath,
-        about=valid_data.about
-    )
-
-    db.add(new_photo)
-    db.commit()
-
-
-    photo_encodings = encoding_to_json(
-        FaceDetection.get_face_encoding_by_img_path(
-            new_photo.filepath
-        )
-    )
-
-    for photo_encoding in photo_encodings:
-        encoding = FaceEncodings(
-            photo_id=new_photo.id,
-            photo_type='photo',
-            encoding=photo_encoding
-        )
-        db.add(encoding)
-        db.commit()
+    await database_updater(valid_data, Photo, db)
 
     return RedirectResponse(url='/', status_code=303)
 
