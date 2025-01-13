@@ -14,6 +14,7 @@ HTML_TEMPLATES = {
 }
 
 PATH_PICTURES = 'materials/pictures/'
+PATH_TMP_PICTURES = 'materials/pictures/temprorary_photos/'
 
 
-DATABASE_URL = f"sqlite:///{os.path.join(BASE_DIR, 'materials', 'db', 'photos.db')}"
+DATABASE_URL = f"sqlite:///{os.path.join(BASE_DIR, 'materials', 'db', 'face_comparator.db')}"

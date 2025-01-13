@@ -49,19 +49,30 @@ class FaceDetection:
 
 
     @classmethod
-    def detect_and_crop_face_from_mtx(cls, image_mtx: np.ndarray) -> list:
+    def detect_and_crop_face(cls, image_mtx: np.ndarray) -> list:
         return cls._detect_and_crop_face(image_mtx)
     
 
     @classmethod
-    def get_face_encoding(cls, photo_mtx: np.ndarray) -> np.ndarray:
-        image_rgb = cv2.cvtColor(photo_mtx, cv2.COLOR_BGR2RGB)
-        encoding = face_recognition.face_encodings(image_rgb)
+    def get_face_encoding(cls, face_mtxs: np.ndarray) -> np.ndarray:
+        encodings = []
+        for pic in face_mtxs:
+            image_rgb = cv2.cvtColor(pic, cv2.COLOR_BGR2RGB)
+            encoding = face_recognition.face_encodings(image_rgb)
 
-        if len(encoding) > 0:
-            encoding = encoding[0]
+            if len(encoding) > 0:
+                encodings.append(encoding[0])
 
-        return encoding
+        return encodings
+    
+
+    @classmethod
+    def get_face_encoding_by_img_path(cls, image_path: str) -> np.ndarray:
+        face_mtxs = FaceDetection.detect_and_crop_face_from_path(image_path)
+        
+        encodings = FaceDetection.get_face_encoding(face_mtxs)
+
+        return encodings
 
 
 

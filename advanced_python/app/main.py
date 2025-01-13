@@ -19,10 +19,19 @@ from utils.config import (
     DIR_TEMPLATES, 
     HTML_TEMPLATES, 
     PATH_PICTURES, 
+    PATH_TMP_PICTURES,
     BASE_DIR
 )
 from utils.pydantic_validation import PhotoUpload
-from utils.sqler import Photo, get_db
+from utils.sqler import (
+    Photo,
+    FaceEncodings,
+    TmpPhoto,
+    get_db
+)
+
+from face_comparator.utils import encoding_to_json
+from face_comparator.face_detector import FaceDetection
 
 
 app = FastAPI()
@@ -64,14 +73,51 @@ async def read_root(
 @app.post("/wait/")
 async def waiting_comparation(
     background_tasks: BackgroundTasks,
-    image: UploadFile = File(...), 
+    image: UploadFile = File(...),
+    image_id: int = Form(...),
+    db: Session = Depends(get_db)
 ):
-    # Define process_image function
-    async def process_image(image: UploadFile):
-        # TODO: process_image,
-        pass
+    if image:
+        ...
+        # async def save_tmp_photo_info(image: UploadFile):
+        #     valid_data = PhotoUpload(filename=image.filename)
+        #     filepath = PATH_TMP_PICTURES + valid_data.filename
 
-    background_tasks.add_task(process_image, image)
+        #     with open(filepath, 'wb') as f:
+        #         content = await image.read()
+        #         f.write(content)
+
+        #     new_tmp_photo = TmpPhoto(
+        #         filename=valid_data.filename, 
+        #         filepath=filepath,
+        #         about=valid_data.about
+        #     )
+
+        #     photo_encoding = encoding_to_json(
+        #       FaceDetection.get_face_encoding_by_img_path(
+        #         new_tmp_photo.filepath
+        #     ))
+
+        #     tmp_photo_encoding = FaceEncodings(
+        #         photo_id=new_tmp_photo.id,
+        #         photo_type='tmp_photo',
+        #         encoding=photo_encoding
+        #     )
+
+
+        #     db.add(new_tmp_photo)
+        #     db.add(tmp_photo_encoding)
+        #     db.commit()
+        #     return new_tmp_photo.id
+    
+        # image_id = background_tasks.add_task(save_tmp_photo_info, image)
+    
+    # Define process_image function
+    async def process_image(image_id: int):
+        # TODO: process_image
+        ...
+
+    background_tasks.add_task(process_image, image_id)
     return templates.TemplateResponse("waiting.html", {"request": Request})
 
 
@@ -103,8 +149,26 @@ async def upload_picture(
         filepath=filepath,
         about=valid_data.about
     )
+
     db.add(new_photo)
     db.commit()
+
+
+    photo_encodings = encoding_to_json(
+        FaceDetection.get_face_encoding_by_img_path(
+            new_photo.filepath
+        )
+    )
+
+    for photo_encoding in photo_encodings:
+        encoding = FaceEncodings(
+            photo_id=new_photo.id,
+            photo_type='photo',
+            encoding=photo_encoding
+        )
+        db.add(encoding)
+        db.commit()
+
     return RedirectResponse(url='/', status_code=303)
 
 

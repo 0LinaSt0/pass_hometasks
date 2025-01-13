@@ -57,7 +57,7 @@
                             <td>{{ photo.filename }}</td>
                             <td>{{ photo.about }}</td>
                             <td><img src="{{ url_for('static', path=path_pictures + photo.filename) }}" alt="{{ photo.filename }}" width="50"></td>
-                            <td><input type="radio" name="selected_photo" value="{{ photo.id }}" required></td>
+                            <td><input type="radio" name="image_id" name="photo.id" required></td>
                         </tr>
                     {% endfor %}
                 {% endif %}

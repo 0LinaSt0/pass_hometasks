@@ -5,13 +5,11 @@ from sqlalchemy import (
     String,
     ForeignKey
 )
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy import JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
 from utils.config import DATABASE_URL
-
-
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(
@@ -21,7 +19,6 @@ SessionLocal = sessionmaker(
 )
 Base = declarative_base()
 
-
 class Photo(Base):
     __tablename__ = 'photos'
 
@@ -30,29 +27,50 @@ class Photo(Base):
     filepath = Column(String, index=True)
     about = Column(String, index=True)
 
-    # face_encodings = relationship(
-    #     'FaceEncodings', 
-    #     back_populates='photos',
-    #     cascade='all, delete-orphan'
-    # )
+    face_encodings = relationship(
+        'FaceEncodings', 
+        back_populates='photo',
+        cascade='all, delete-orphan'
+    )
 
+class TmpPhoto(Base):
+    __tablename__ = 'tmp_photos'
 
+    id = Column(Integer, primary_key=True, index=True)
+    filename = Column(String, index=True)
+    filepath = Column(String, index=True)
 
-# class FaceEncodings(Base):
-#     '''
-#     If there are some faces on one photo, where are added
-#     every finded face as new row. So, one photo can have
-#     more than one face_encodings.
-#     '''
-#     __tablename__ = 'face_encodings'
+class FaceEncodings(Base):
+    __tablename__ = 'face_encodings'
 
-#     id = Column(Integer, primary_key=True, index=True)
-#     photo_id = Column(Integer, ForeignKey('photo.id'), nullable=False)
-#     encoding = Column(ARRAY(float), nullable=False)
+    id = Column(Integer, primary_key=True, index=True)
+    
+    # Foreign keys for both Photo and TmpPhoto
+    photo_id = Column(Integer, ForeignKey('photos.id'), nullable=True)  # Nullable for polymorphic behavior
+    tmp_photo_id = Column(Integer, ForeignKey('tmp_photos.id'), nullable=True)  # Nullable for polymorphic behavior
+    photo_type = Column(String(50), nullable=False)  # 'photo' or 'tmp_photo'
+    
+    encoding = Column(JSON, nullable=False)
 
-#     photo = relationship('Photo', back_populates='face_encodings')
+    # Define relationships for both types of photos
+    photo = relationship(
+        "Photo",
+        primaryjoin="and_(FaceEncodings.photo_id==Photo.id, FaceEncodings.photo_type=='photo')",
+        back_populates='face_encodings'
+    )
+    
+    tmp_photo = relationship(
+        "TmpPhoto",
+        primaryjoin="and_(FaceEncodings.tmp_photo_id==TmpPhoto.id, FaceEncodings.photo_type=='tmp_photo')"
+    )
 
-
+    @property
+    def actual_photo(self):
+        if self.photo_type == 'photo':
+            return self.photo
+        elif self.photo_type == 'tmp_photo':
+            return self.tmp_photo
+        return None
 
 def get_db():
     db = SessionLocal()
@@ -60,6 +78,5 @@ def get_db():
         yield db
     finally:
         db.close()
-
 
 Base.metadata.create_all(bind=engine)
