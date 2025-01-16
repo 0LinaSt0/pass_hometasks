@@ -33,12 +33,30 @@ class Photo(Base):
         cascade='all, delete-orphan'
     )
 
+    def __init__(self, **kwargs):
+        # Filter out any extra keys that are not defined in the class
+        valid_keys = {'id', 'filename', 'filepath', 'about'}
+        for key, value in kwargs.items():
+            if key in valid_keys:
+                setattr(self, key, value)
+
+
+
 class TmpPhoto(Base):
     __tablename__ = 'tmp_photos'
 
     id = Column(Integer, primary_key=True, index=True)
     filename = Column(String, index=True)
     filepath = Column(String, index=True)
+
+    def __init__(self, **kwargs):
+        # Filter out any extra keys that are not defined in the class
+        valid_keys = {'id', 'filename', 'filepath'}
+        for key, value in kwargs.items():
+            if key in valid_keys:
+                setattr(self, key, value)
+
+
 
 class FaceEncodings(Base):
     __tablename__ = 'face_encodings'

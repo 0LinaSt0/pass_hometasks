@@ -16,15 +16,15 @@
 
     <!-- Section 2: Upload photo for comparing -->
     <h2>Выбрать локальное фото для сравнения со всеми фото из базы</h2>
-    <form action="/wait/" method="post" enctype="multipart/form-data">
-        <input type="file" name="compare_file" acept="image/*", required />
+    <form action="/wait" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required />  <!-- Changed name from compare_file to image -->
         <input type="submit" value="Загрузить для сравнения" />
     </form>
 
     <!-- Section 3: Upload new photo -->
     <h2>Здесь можно загрузить новое фото в базу данных</h2>
-    <form action="/upload/" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required />
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required />
         <input type="submit" value="Загрузить" />
         <textarea name="about" placeholder="Описание для фото (необязательно)"></textarea>
     </form>

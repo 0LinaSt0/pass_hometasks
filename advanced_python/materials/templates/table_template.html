@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<form action="/wait/" method="post"> 
+<form action="/wait" method="post"> 
     <div class="table-container">
         <table border="1" style="width: 80%;">
             <colgroup>
@@ -49,15 +49,19 @@
             </thead>
             <tbody>
                 {% if photos | length == 0 %}
-                <td colspan="5">База данных пуста</td>
+                    <td colspan="5">База данных пуста</td>
                 {% else %}
                     {% for photo in photos %}
                         <tr>
                             <td>{{ photo.id }}</td>
                             <td>{{ photo.filename }}</td>
-                            <td>{{ photo.about }}</td>
+                            {% if photo.about == None %}
+                                <td></td>
+                            {% else %}
+                                <td>{{ photo.about }}</td>
+                            {% endif %}
                             <td><img src="{{ url_for('static', path=path_pictures + photo.filename) }}" alt="{{ photo.filename }}" width="50"></td>
-                            <td><input type="radio" name="image_id" name="photo.id" required></td>
+                            <td><input type="radio" name="image_id" value="{{ photo.id }}" required></td>
                         </tr>
                     {% endfor %}
                 {% endif %}

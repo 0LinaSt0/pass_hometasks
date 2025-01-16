@@ -12,7 +12,7 @@
         event.preventDefault();
     
         const formData = new FormData(this);
-        const response = await fetch('/delete-image/', {
+        const response = await fetch('/delete-image', {
             method: 'POST',
             body: formData
         });

@@ -1,3 +1,5 @@
+from fastapi.responses import RedirectResponse
+from fastapi import FastAPI, BackgroundTasks, UploadFile, File, Form, Request
 import os
 
 from fastapi import (
@@ -15,24 +17,24 @@ from fastapi.templating import Jinja2Templates
 
 from sqlalchemy.orm import Session
 
-from app.utils import file_uploader, database_updater
+from app.utils import (
+    file_uploader,
+    database_updater,
+    process_image,
+    save_tmp_photo_info
+)
 
 from utils.config import (
-    DIR_TEMPLATES, 
-    HTML_TEMPLATES, 
-    PATH_PICTURES, 
-    PATH_TMP_PICTURES,
+    DIR_TEMPLATES,
+    HTML_TEMPLATES,
+    PATH_PICTURES,
     BASE_DIR
 )
 from utils.pydantic_validation import PhotoUpload
 from utils.sqler import (
     Photo,
-    FaceEncodings,
-    TmpPhoto,
     get_db
 )
-
-
 
 
 app = FastAPI()
@@ -57,7 +59,7 @@ async def read_root(
         }
     ).body.decode()
 
-    delete_content = templates.TemplateResponse(\
+    delete_content = templates.TemplateResponse(
         HTML_TEMPLATES['delete'],
         {'request': request}
     ).body.decode()
@@ -71,67 +73,57 @@ async def read_root(
         }
     )
 
-@app.post("/wait/")
+
+@app.post("/wait")
 async def waiting_comparation(
-    background_tasks: BackgroundTasks,
-    image: UploadFile = File(...),
-    image_id: int = Form(...),
-    db: Session = Depends(get_db)
+    request: Request,
+    image: UploadFile = File(None),
+    image_id: int = Form(None),
+    db: Session = Depends(get_db),
 ):
     if image:
-        async def save_tmp_photo_info(image: UploadFile):
-            valid_data = await file_uploader(image)
+        image_id = await save_tmp_photo_info(image, db)
 
-            new_tmp_photo = await database_updater(valid_data, Photo, db)
-
-            return new_tmp_photo.id
-    
-        image_id = background_tasks.add_task(save_tmp_photo_info, image)
-    
-    # Define process_image function
-    async def process_image(image_id: int):
-        # TODO: process_image
-        ...
-
-    background_tasks.add_task(process_image, image_id)
-    return templates.TemplateResponse("waiting.html", {"request": Request})
+    await process_image(image_id)
+    return RedirectResponse(f'/result?image_id={image_id}', status_code=303)
 
 
-@app.get("/result/")
-async def get_result():
-    # This should ideally check if the processing is complete and return results.
-    
+
+@app.get("/result")
+async def get_result(
+    image_id: int,
+    request: Request
+):
     # TODO: To do result comparation
-    result = "Comparison Result"  # Replace with actual result fetching logic
-    return templates.TemplateResponse("comparation_result.html", {"request": Request, "result": result})
+    # Replace with actual result fetching logic
+    result = f"Comparison Result: {image_id}"
+    return templates.TemplateResponse("comparation_result.html", {"result": result, 'request': request})
 
 
 
-@app.post('/upload/')
+
+@app.post('/upload')
 async def upload_picture(
     file: UploadFile = File(...),
     about: str = Form(None),
     db: Session = Depends(get_db)
 ):
-    valid_data = await file_uploader(file, about=about)
+    valid_data = await file_uploader(
+        main_filepath=PATH_PICTURES, file=file, about=about
+    )
 
-    await database_updater(valid_data, Photo, db)
+    await database_updater(
+        valid_data=valid_data, 
+        datatable=Photo,
+        encoding_config='photo',
+        db=db
+    )
 
     return RedirectResponse(url='/', status_code=303)
 
 
 
-@app.post('/compare/')
-async def photo_comparations(
-    selected_photo: int = Form(...), 
-    db: Session = Depends(get_db)
-):
-    # TODO: REALIZE LOGIC WITH COMPARATION PHOTOS
-    return {'selected_photo': selected_photo}
-
-
-
-@app.post('/delete-image/')
+@app.post('/delete-image')
 def delete_image(
     image_id: int = Form(...),
     db: Session = Depends(get_db)
@@ -144,7 +136,6 @@ def delete_image(
     if os.path.exists(filepath := (BASE_DIR + image.filepath)):
         os.remove(filepath)
 
-    
     db.delete(image)
     db.commit()
 

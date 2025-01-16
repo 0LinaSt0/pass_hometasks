@@ -14,13 +14,17 @@ from utils.sqler import (
     FaceEncodings
 )
 
+from utils.config import PATH_TMP_PICTURES
 
 
 async def file_uploader(
+    main_filepath: str,
     file: UploadFile = File(...),
     **kwargs
 ):
-    valid_data = PhotoUpload(filename=file.filename, **kwargs)
+    valid_data = PhotoUpload(
+        filename=file.filename, main_filepath=main_filepath, **kwargs
+    )
 
     with open(valid_data.filepath, 'wb') as f:
         content = await file.read()
@@ -32,14 +36,17 @@ async def file_uploader(
 async def database_updater(
     valid_data: PhotoUpload, 
     datatable: Union[Photo, TmpPhoto],
+    encoding_config: str,
     db: Session
 ):
 
-    new_photo = datatable(
-        filename=valid_data.filename, 
-        filepath=valid_data.filepath,
-        about=valid_data.about
-    )
+    data = valid_data.model_dump()
+
+    data_for_datatable = {
+        field: value for field, value in data.items()
+    }
+
+    new_photo = datatable(**data_for_datatable)
 
     db.add(new_photo)
     db.commit()
@@ -51,13 +58,46 @@ async def database_updater(
         )
     )
 
+    encoding_data = {}
+    if encoding_config == 'photo':
+        encoding_data['photo_id'] = new_photo.id
+        encoding_data['photo_type'] = 'photo'
+    elif encoding_config == 'tmp_photo':
+        encoding_data['tmp_photo_id'] = new_photo.id
+        encoding_data['photo_type'] = 'tmp_photo'
+
+
     for photo_encoding in photo_encodings:
         encoding = FaceEncodings(
-            photo_id=new_photo.id,
-            photo_type='photo',
+            **encoding_data, 
             encoding=photo_encoding
         )
         db.add(encoding)
         db.commit()
 
     return new_photo
+
+
+async def save_tmp_photo_info(
+    image: UploadFile,
+    db: Session
+):
+    valid_data = await file_uploader(
+        main_filepath=PATH_TMP_PICTURES, file=image
+    )
+
+    new_tmp_photo = await database_updater(
+        valid_data=valid_data, 
+        datatable=TmpPhoto,
+        encoding_config='tmp_photo',
+        db=db
+    )
+
+    return new_tmp_photo.id
+
+
+async def process_image(image_id: str):
+    import asyncio
+    # TODO: Realize preprocess_image
+    await asyncio.sleep(3)
+    print(f"Processed image with ID: {image_id}")
