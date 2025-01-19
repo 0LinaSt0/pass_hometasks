@@ -2,6 +2,7 @@
 **cache**
 **venv**
 **/db/**
+**/temprorary_photos/*
 
 **.DS_Store
 

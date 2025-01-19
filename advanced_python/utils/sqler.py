@@ -13,22 +13,30 @@ from utils.config import DATABASE_URL
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(
-    autocommit=False, 
+    autocommit=False,
     autoflush=False,
     bind=engine
 )
 Base = declarative_base()
 
+
+# ~~~~~~~~~~~~ Photos datatables ~~~~~~~~~~~~
+
 class Photo(Base):
-    __tablename__ = 'photos'
+    __abstract__ = True
 
     id = Column(Integer, primary_key=True, index=True)
     filename = Column(String, index=True)
     filepath = Column(String, index=True)
+
+
+class PhotoDatabase(Photo):
+    __tablename__ = 'photos'
+
     about = Column(String, index=True)
 
     face_encodings = relationship(
-        'FaceEncodings', 
+        'FaceEncodingsDatabase',
         back_populates='photo',
         cascade='all, delete-orphan'
     )
@@ -41,13 +49,14 @@ class Photo(Base):
                 setattr(self, key, value)
 
 
-
-class TmpPhoto(Base):
+class PhotoTmp(Photo):
     __tablename__ = 'tmp_photos'
 
-    id = Column(Integer, primary_key=True, index=True)
-    filename = Column(String, index=True)
-    filepath = Column(String, index=True)
+    face_encodings = relationship(
+        'FaceEncodingsTmp',
+        back_populates='tmp_photo',
+        cascade='all, delete-orphan'
+    )
 
     def __init__(self, **kwargs):
         # Filter out any extra keys that are not defined in the class
@@ -57,38 +66,36 @@ class TmpPhoto(Base):
                 setattr(self, key, value)
 
 
+# ~~~~~~~~~~~~ Encoding datatables ~~~~~~~~~~~~
 
 class FaceEncodings(Base):
-    __tablename__ = 'face_encodings'
+    __abstract__ = True
 
     id = Column(Integer, primary_key=True, index=True)
-    
-    # Foreign keys for both Photo and TmpPhoto
-    photo_id = Column(Integer, ForeignKey('photos.id'), nullable=True)  # Nullable for polymorphic behavior
-    tmp_photo_id = Column(Integer, ForeignKey('tmp_photos.id'), nullable=True)  # Nullable for polymorphic behavior
-    photo_type = Column(String(50), nullable=False)  # 'photo' or 'tmp_photo'
-    
     encoding = Column(JSON, nullable=False)
 
-    # Define relationships for both types of photos
+
+class FaceEncodingsDatabase(FaceEncodings):
+    __tablename__ = 'face_encodings_database'
+
+    photo_id = Column(Integer, ForeignKey('photos.id'))
+
     photo = relationship(
-        "Photo",
-        primaryjoin="and_(FaceEncodings.photo_id==Photo.id, FaceEncodings.photo_type=='photo')",
+        'PhotoDatabase',
         back_populates='face_encodings'
     )
-    
+
+
+class FaceEncodingsTmp(FaceEncodings):
+    __tablename__ = 'face_encodings_tmp'
+
+    photo_id = Column(Integer, ForeignKey('tmp_photos.id'))
+
     tmp_photo = relationship(
-        "TmpPhoto",
-        primaryjoin="and_(FaceEncodings.tmp_photo_id==TmpPhoto.id, FaceEncodings.photo_type=='tmp_photo')"
+        'PhotoTmp',
+        back_populates='face_encodings'
     )
 
-    @property
-    def actual_photo(self):
-        if self.photo_type == 'photo':
-            return self.photo
-        elif self.photo_type == 'tmp_photo':
-            return self.tmp_photo
-        return None
 
 def get_db():
     db = SessionLocal()
@@ -96,5 +103,6 @@ def get_db():
         yield db
     finally:
         db.close()
+
 
 Base.metadata.create_all(bind=engine)

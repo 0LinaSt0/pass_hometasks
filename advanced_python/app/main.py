@@ -1,12 +1,10 @@
 from fastapi.responses import RedirectResponse
-from fastapi import FastAPI, BackgroundTasks, UploadFile, File, Form, Request
 import os
 
 from fastapi import (
     FastAPI,
     Request,
     UploadFile,
-    BackgroundTasks,
     File,
     Depends,
     Form
@@ -30,9 +28,11 @@ from utils.config import (
     PATH_PICTURES,
     BASE_DIR
 )
-from utils.pydantic_validation import PhotoUpload
 from utils.sqler import (
-    Photo,
+    FaceEncodingsDatabase,
+    FaceEncodingsTmp,
+    PhotoDatabase,
+    PhotoTmp,
     get_db
 )
 
@@ -48,7 +48,7 @@ async def read_root(
     request: Request,
     db: Session = Depends(get_db)
 ):
-    photos = db.query(Photo).all()
+    photos = db.query(PhotoDatabase).all()
 
     table_content = templates.TemplateResponse(
         HTML_TEMPLATES['imges_table'],
@@ -76,17 +76,18 @@ async def read_root(
 
 @app.post("/wait")
 async def waiting_comparation(
-    request: Request,
     image: UploadFile = File(None),
     image_id: int = Form(None),
     db: Session = Depends(get_db),
 ):
+    image_type = PhotoDatabase
+
     if image:
         image_id = await save_tmp_photo_info(image, db)
+        image_type = PhotoTmp
 
-    await process_image(image_id)
+    await process_image(image_id, image_type, db)
     return RedirectResponse(f'/result?image_id={image_id}', status_code=303)
-
 
 
 @app.get("/result")
@@ -100,27 +101,24 @@ async def get_result(
     return templates.TemplateResponse("comparation_result.html", {"result": result, 'request': request})
 
 
-
-
 @app.post('/upload')
 async def upload_picture(
-    file: UploadFile = File(...),
+    image: UploadFile = File(...),
     about: str = Form(None),
     db: Session = Depends(get_db)
 ):
     valid_data = await file_uploader(
-        main_filepath=PATH_PICTURES, file=file, about=about
+        main_filepath=PATH_PICTURES, file=image, about=about
     )
 
     await database_updater(
-        valid_data=valid_data, 
-        datatable=Photo,
-        encoding_config='photo',
+        valid_data=valid_data,
+        photo_datatable=PhotoDatabase,
+        encoding_datatable=FaceEncodingsDatabase,
         db=db
     )
 
     return RedirectResponse(url='/', status_code=303)
-
 
 
 @app.post('/delete-image')
@@ -128,7 +126,8 @@ def delete_image(
     image_id: int = Form(...),
     db: Session = Depends(get_db)
 ):
-    image = db.query(Photo).filter(Photo.id == image_id).first()
+    image = db.query(PhotoDatabase).filter(
+        PhotoDatabase.id == image_id).first()
 
     if not image:
         return {"status": "error", "message": "Фото с таким id не найдено!"}

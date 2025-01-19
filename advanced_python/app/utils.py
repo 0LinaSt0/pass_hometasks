@@ -1,6 +1,6 @@
 from typing import Union
 
-from fastapi import UploadFile, File, Form
+from fastapi import UploadFile, File
 
 from sqlalchemy.orm import Session
 
@@ -9,9 +9,10 @@ from face_comparator.face_detector import FaceDetection
 
 from utils.pydantic_validation import PhotoUpload
 from utils.sqler import (
-    Photo,
-    TmpPhoto,
-    FaceEncodings
+    PhotoDatabase,
+    PhotoTmp,
+    FaceEncodingsDatabase,
+    FaceEncodingsTmp,
 )
 
 from utils.config import PATH_TMP_PICTURES
@@ -34,9 +35,9 @@ async def file_uploader(
 
 
 async def database_updater(
-    valid_data: PhotoUpload, 
-    datatable: Union[Photo, TmpPhoto],
-    encoding_config: str,
+    valid_data: PhotoUpload,
+    photo_datatable: Union[PhotoDatabase, PhotoTmp],
+    encoding_datatable: Union[FaceEncodingsDatabase, FaceEncodingsTmp],
     db: Session
 ):
 
@@ -46,11 +47,10 @@ async def database_updater(
         field: value for field, value in data.items()
     }
 
-    new_photo = datatable(**data_for_datatable)
+    new_photo = photo_datatable(**data_for_datatable)
 
     db.add(new_photo)
     db.commit()
-
 
     photo_encodings = encoding_to_json(
         FaceDetection.get_face_encoding_by_img_path(
@@ -58,18 +58,9 @@ async def database_updater(
         )
     )
 
-    encoding_data = {}
-    if encoding_config == 'photo':
-        encoding_data['photo_id'] = new_photo.id
-        encoding_data['photo_type'] = 'photo'
-    elif encoding_config == 'tmp_photo':
-        encoding_data['tmp_photo_id'] = new_photo.id
-        encoding_data['photo_type'] = 'tmp_photo'
-
-
     for photo_encoding in photo_encodings:
-        encoding = FaceEncodings(
-            **encoding_data, 
+        encoding = encoding_datatable(
+            photo_id=new_photo.id,
             encoding=photo_encoding
         )
         db.add(encoding)
@@ -87,17 +78,28 @@ async def save_tmp_photo_info(
     )
 
     new_tmp_photo = await database_updater(
-        valid_data=valid_data, 
-        datatable=TmpPhoto,
-        encoding_config='tmp_photo',
+        valid_data=valid_data,
+        photo_datatable=PhotoTmp,
+        encoding_datatable=FaceEncodingsTmp,
         db=db
     )
 
     return new_tmp_photo.id
 
 
-async def process_image(image_id: str):
-    import asyncio
+async def process_image(
+    image_id: str,
+    image_type: str,
+    db: Session
+):
     # TODO: Realize preprocess_image
+    import asyncio
     await asyncio.sleep(3)
-    print(f"Processed image with ID: {image_id}")
+
+    # all_encodings = db.query(FaceEncodings).all()
+
+    # for record in all_encodings:
+    #     print(record)
+    #     print(record.id)
+
+    print(f"Processed image with ID: {image_id} and type {image_type}")
