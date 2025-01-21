@@ -1,11 +1,12 @@
+import bisect
 from typing import Union
 
 from fastapi import UploadFile, File
 
 from sqlalchemy.orm import Session
 
-from face_comparator.utils import encoding_to_json
-from face_comparator.face_detector import FaceDetection
+from face_comparator.utils import encoding_to_json, encoding_from_json
+from face_comparator.face_detector import FaceDetection, FaceComparator
 
 from utils.pydantic_validation import PhotoUpload
 from utils.sqler import (
@@ -15,7 +16,7 @@ from utils.sqler import (
     FaceEncodingsTmp,
 )
 
-from utils.config import PATH_TMP_PICTURES
+from utils.config import PATH_TMP_PICTURES, BASE_DIR
 
 
 async def file_uploader(
@@ -64,7 +65,8 @@ async def database_updater(
             encoding=photo_encoding
         )
         db.add(encoding)
-        db.commit()
+        
+    db.commit()
 
     return new_photo
 
@@ -72,9 +74,9 @@ async def database_updater(
 async def save_tmp_photo_info(
     image: UploadFile,
     db: Session
-):
+) -> int:
     valid_data = await file_uploader(
-        main_filepath=PATH_TMP_PICTURES, file=image
+        main_filepath=BASE_DIR+PATH_TMP_PICTURES, file=image
     )
 
     new_tmp_photo = await database_updater(
@@ -88,18 +90,44 @@ async def save_tmp_photo_info(
 
 
 async def process_image(
-    image_id: str,
-    image_type: str,
+    image_id: int,
+    image_table: Union[PhotoDatabase, PhotoTmp],
+    encoding_table: Union[FaceEncodingsDatabase, FaceEncodingsTmp],
     db: Session
 ):
-    # TODO: Realize preprocess_image
-    import asyncio
-    await asyncio.sleep(3)
+    same_faces_idxs = []
+    
+    photo_encoding_mtxs = db.query(encoding_table).filter(
+        encoding_table.photo_id == image_id
+    ).with_entities(
+        encoding_table.encoding
+    ).all()
 
-    # all_encodings = db.query(FaceEncodings).all()
+    if encoding_table == FaceEncodingsDatabase:
+        all_db_encodings = db.query(FaceEncodingsDatabase)\
+            .filter(FaceEncodingsDatabase.photo_id != image_id)\
+            .all()
+    else:
+        all_db_encodings = db.query(FaceEncodingsDatabase).all()
 
-    # for record in all_encodings:
-    #     print(record)
-    #     print(record.id)
+    for record in all_db_encodings:
+        for photo_encoding_mtx in photo_encoding_mtxs:
+            photo_encoding_mtx = encoding_from_json(
+                photo_encoding_mtx.encoding
+            )
+            photo_database_mtx = encoding_from_json(
+                record.encoding
+            )
+            
+            dist, is_same = FaceComparator.faces_euclidean_distance(
+                photo_database_mtx,
+                photo_encoding_mtx
+            )
+            
+            if is_same:
+                bisect.insort(
+                    same_faces_idxs,
+                    (dist, is_same, record.photo_id)
+                )
 
-    print(f"Processed image with ID: {image_id} and type {image_type}")
+    return same_faces_idxs

@@ -1,5 +1,7 @@
-from fastapi.responses import RedirectResponse
 import os
+from typing import Union
+
+from fastapi.responses import RedirectResponse
 
 from fastapi import (
     FastAPI,
@@ -12,6 +14,7 @@ from fastapi import (
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+from starlette.middleware.sessions import SessionMiddleware
 
 from sqlalchemy.orm import Session
 
@@ -26,7 +29,8 @@ from utils.config import (
     DIR_TEMPLATES,
     HTML_TEMPLATES,
     PATH_PICTURES,
-    BASE_DIR
+    BASE_DIR,
+    SECRET_KEY
 )
 from utils.sqler import (
     FaceEncodingsDatabase,
@@ -40,7 +44,13 @@ from utils.sqler import (
 app = FastAPI()
 templates = Jinja2Templates(directory=DIR_TEMPLATES)
 
-app.mount('/pictures', StaticFiles(directory=BASE_DIR), name='static')
+app.mount(
+    '/pictures', 
+    StaticFiles(directory=os.path.join(BASE_DIR, PATH_PICTURES)),
+    name='static'
+)
+app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY)
+
 
 
 @app.get('/', response_class=HTMLResponse)
@@ -49,15 +59,6 @@ async def read_root(
     db: Session = Depends(get_db)
 ):
     photos = db.query(PhotoDatabase).all()
-
-    table_content = templates.TemplateResponse(
-        HTML_TEMPLATES['imges_table'],
-        {
-            'request': request,
-            'photos': photos,
-            'path_pictures': PATH_PICTURES
-        }
-    ).body.decode()
 
     delete_content = templates.TemplateResponse(
         HTML_TEMPLATES['delete'],
@@ -68,37 +69,61 @@ async def read_root(
         HTML_TEMPLATES['root'],
         {
             'request': request,
-            'table_content': table_content,
+            'photos': photos,
             'delete_content': delete_content,
         }
     )
 
 
-@app.post("/wait")
+@app.post('/wait')
 async def waiting_comparation(
+    request: Request,
     image: UploadFile = File(None),
     image_id: int = Form(None),
     db: Session = Depends(get_db),
 ):
-    image_type = PhotoDatabase
+    image_table = PhotoDatabase
+    encoding_table = FaceEncodingsDatabase
+    refer_folder = ''
 
     if image:
         image_id = await save_tmp_photo_info(image, db)
-        image_type = PhotoTmp
+        image_table = PhotoTmp
+        encoding_table = FaceEncodingsTmp
+        refer_folder = 'temprorary_photos/'
 
-    await process_image(image_id, image_type, db)
-    return RedirectResponse(f'/result?image_id={image_id}', status_code=303)
+    same_faces = await process_image(
+        image_id, image_table, encoding_table, db
+    )
+    request.session['same_faces'] = same_faces
+    request.session['refer_filepath'] = \
+        refer_folder\
+        + db.query(image_table).filter(
+            image_table.id == image_id
+        ).first().filename
+    return RedirectResponse(f'/result?refer_photo_id={image_id}', status_code=303)
 
 
-@app.get("/result")
+@app.get('/result')
 async def get_result(
-    image_id: int,
-    request: Request
+    refer_photo_id: int,
+    request: Request,
+    db: Session = Depends(get_db)
 ):
-    # TODO: To do result comparation
-    # Replace with actual result fetching logic
-    result = f"Comparison Result: {image_id}"
-    return templates.TemplateResponse("comparation_result.html", {"result": result, 'request': request})
+    same_faces = request.session.get('same_faces')
+    refer_filepath = request.session.get('refer_filepath')
+
+    print(refer_filepath)
+
+    photos = db.query(PhotoDatabase).filter(
+        PhotoDatabase.id.in_([el[2] for el in same_faces])
+    ).all()
+
+    return templates.TemplateResponse('comparation_result.html', {
+        'refer_photo_filepath': refer_filepath,
+        'photos': photos,
+        'request': request
+    })
 
 
 @app.post('/upload')
@@ -108,7 +133,7 @@ async def upload_picture(
     db: Session = Depends(get_db)
 ):
     valid_data = await file_uploader(
-        main_filepath=PATH_PICTURES, file=image, about=about
+        main_filepath=BASE_DIR + PATH_PICTURES, file=image, about=about
     )
 
     await database_updater(
@@ -130,7 +155,7 @@ def delete_image(
         PhotoDatabase.id == image_id).first()
 
     if not image:
-        return {"status": "error", "message": "Фото с таким id не найдено!"}
+        return {'status': 'error', 'message': 'Фото с таким id не найдено!'}
 
     if os.path.exists(filepath := (BASE_DIR + image.filepath)):
         os.remove(filepath)
@@ -138,4 +163,4 @@ def delete_image(
     db.delete(image)
     db.commit()
 
-    return {"status": "success", "message": "Фото успешно удалено"}
+    return {'status': 'success', 'message': 'Фото успешно удалено'}

@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фото компаратор</title>
-</head>
-<body>
+{% extends "style.html" %}
+
+{% block title %}Фото компаратор{% endblock %}
+
+{% block body %}
     <h1>Сервис по сравнению изображений</h1>
 
     <!-- Section 1: Select photo from database -->
     <h2>Выбрать фото для сравнения с другими фото из базы данных</h2>
-    <div id="table-container">
-        {{ table_content | safe }}
-    </div>
+    <form action="/wait" method="post">
+        {% include "table_template.html" %}
+        <input type="submit" value="Использовать выбранное фото">
+    </form>
 
     <!-- Section 2: Upload photo for comparing -->
     <h2>Выбрать локальное фото для сравнения со всеми фото из базы</h2>
@@ -34,5 +32,5 @@
     <div id="delete-content">
         {{ delete_content | safe }}
     </div>
-</body>
-</html>
+
+{% endblock %}

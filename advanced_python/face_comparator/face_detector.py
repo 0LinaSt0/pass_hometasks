@@ -16,6 +16,13 @@ class FaceDetection:
         cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
     )
 
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(FaceDetection, cls).__new__(cls)
+        return cls._instance
+
 
     @classmethod
     def _detect_and_crop_face(cls, mtx_photo: np.ndarray) -> list:
@@ -54,7 +61,7 @@ class FaceDetection:
     
 
     @classmethod
-    def get_face_encoding(cls, face_mtxs: np.ndarray) -> np.ndarray:
+    def get_face_encodings(cls, face_mtxs: np.ndarray) -> np.ndarray:
         encodings = []
         for pic in face_mtxs:
             image_rgb = cv2.cvtColor(pic, cv2.COLOR_BGR2RGB)
@@ -69,8 +76,8 @@ class FaceDetection:
     @classmethod
     def get_face_encoding_by_img_path(cls, image_path: str) -> np.ndarray:
         face_mtxs = FaceDetection.detect_and_crop_face_from_path(image_path)
-        
-        encodings = FaceDetection.get_face_encoding(face_mtxs)
+
+        encodings = FaceDetection.get_face_encodings(face_mtxs)
 
         return encodings
 
@@ -85,12 +92,19 @@ class FaceComparator:
     '''
 
     THRESHOLD = 0.6
+    
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(FaceComparator, cls).__new__(cls)
+        return cls._instance
 
 
     @classmethod
     def faces_euclidean_distance(
         cls,
-        encoding_face_mtx1: np.ndarray, 
+        encoding_face_mtx1: np.ndarray,
         encoding_face_mtx2: np.ndarray
     ):
         dist = distance.euclidean(
@@ -98,4 +112,6 @@ class FaceComparator:
             encoding_face_mtx2
         )
 
-        return dist
+        is_same = True if dist < cls.THRESHOLD else False
+
+        return dist, is_same

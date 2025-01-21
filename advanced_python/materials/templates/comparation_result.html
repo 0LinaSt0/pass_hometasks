@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Результат</title>
-</head>
-<body>
-    <h1>Процесс завершен. И вот результат! </h1>
-    <p>Результат: {{ result }}</p>
-</body>
-</html>
+{% extends "style.html" %}
+
+{% block title %}Результат сравнения{% endblock %}
+
+{% block body %}
+    <h1>Процесс завершен. И вот результат!</h1>
+    <h2>Для вашей фотографии:</h2>
+    <div><img src="/pictures/{{ refer_photo_filepath }}" alt="{{ refer_photo_filepath }}"></div>
+
+    <h2>Вот что удалось найти в базе:</h2>
+    {% include "table_template.html" %}
+
+    <form action="/" method="get">
+        <input type="submit" value="Вернуться на главную страницу">
+    </form>
+{% endblock %}

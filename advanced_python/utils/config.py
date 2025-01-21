@@ -2,7 +2,7 @@ import os
 
 
 
-BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
 
 
 DIR_TEMPLATES = 'materials/templates/'
@@ -18,3 +18,5 @@ PATH_TMP_PICTURES = 'materials/pictures/temprorary_photos/'
 
 
 DATABASE_URL = f"sqlite:///{os.path.join(BASE_DIR, 'materials', 'db', 'face_comparator.db')}"
+
+SECRET_KEY = 'my-secret-key'
