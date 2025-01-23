@@ -3,6 +3,7 @@
 **venv**
 **/db/**
 **/temprorary_photos/*
+**/logs/**
 
 **.DS_Store
 

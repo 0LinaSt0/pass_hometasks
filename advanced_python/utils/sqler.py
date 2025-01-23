@@ -11,6 +11,8 @@ from sqlalchemy.orm import sessionmaker, relationship
 
 from utils.config import DATABASE_URL
 
+from utils.logging import LoggingMethods
+
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(
     autocommit=False,
@@ -22,7 +24,7 @@ Base = declarative_base()
 
 # ~~~~~~~~~~~~ Photos datatables ~~~~~~~~~~~~
 
-class Photo(Base):
+class Photo(LoggingMethods, Base):
     __abstract__ = True
 
     id = Column(Integer, primary_key=True, index=True)
@@ -68,7 +70,7 @@ class PhotoTmp(Photo):
 
 # ~~~~~~~~~~~~ Encoding datatables ~~~~~~~~~~~~
 
-class FaceEncodings(Base):
+class FaceEncodings(LoggingMethods, Base):
     __abstract__ = True
 
     id = Column(Integer, primary_key=True, index=True)

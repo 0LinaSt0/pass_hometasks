@@ -1,11 +1,14 @@
+from typing import List
+
 import cv2
 import numpy as np
 import face_recognition
 from scipy.spatial import distance
 
+from utils.logging import LoggingMethods
 
 
-class FaceDetection:
+class FaceDetection(LoggingMethods):
     ''' Class includes method for:
         - detection faces in the images with Haar Cascades;
         - extract features from faces by face_recognition encoding.
@@ -23,11 +26,10 @@ class FaceDetection:
             cls._instance = super(FaceDetection, cls).__new__(cls)
         return cls._instance
 
-
     @classmethod
     def _detect_and_crop_face(cls, mtx_photo: np.ndarray) -> list:
         faces_pics = []
-        
+
         gray_image = cv2.cvtColor(mtx_photo, cv2.COLOR_BGR2GRAY)
 
         faces = cls.FACE_CASCADE.detectMultiScale(
@@ -36,10 +38,7 @@ class FaceDetection:
             minNeighbors=5
         )
 
-        if len(faces) == 0:
-            # TODO: add logging here
-            ...
-        else:
+        if len(faces) != 0:
             for (x, y, w, h) in faces:
                 # Crop the face from the image and save to face_pics list
                 face = mtx_photo[y:y+h, x:x+w]
@@ -47,21 +46,18 @@ class FaceDetection:
 
         return faces_pics
 
-
     @classmethod
     def detect_and_crop_face_from_path(cls, image_path: str) -> list:
         image = cv2.imread(image_path)
 
         return cls._detect_and_crop_face(image)
 
-
     @classmethod
     def detect_and_crop_face(cls, image_mtx: np.ndarray) -> list:
         return cls._detect_and_crop_face(image_mtx)
-    
 
     @classmethod
-    def get_face_encodings(cls, face_mtxs: np.ndarray) -> np.ndarray:
+    def get_face_encodings(cls, face_mtxs: np.ndarray) -> List[np.ndarray]:
         encodings = []
         for pic in face_mtxs:
             image_rgb = cv2.cvtColor(pic, cv2.COLOR_BGR2RGB)
@@ -71,10 +67,9 @@ class FaceDetection:
                 encodings.append(encoding[0])
 
         return encodings
-    
 
     @classmethod
-    def get_face_encoding_by_img_path(cls, image_path: str) -> np.ndarray:
+    def get_face_encoding_by_img_path(cls, image_path: str) -> List[np.ndarray]:
         face_mtxs = FaceDetection.detect_and_crop_face_from_path(image_path)
 
         encodings = FaceDetection.get_face_encodings(face_mtxs)
@@ -82,8 +77,7 @@ class FaceDetection:
         return encodings
 
 
-
-class FaceComparator:
+class FaceComparator(LoggingMethods):
     '''
     Class for comparing two faces. Methods for calculating
     the distance between two face encodings. A common metric is
@@ -92,14 +86,13 @@ class FaceComparator:
     '''
 
     THRESHOLD = 0.6
-    
+
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super(FaceComparator, cls).__new__(cls)
         return cls._instance
-
 
     @classmethod
     def faces_euclidean_distance(
@@ -108,7 +101,7 @@ class FaceComparator:
         encoding_face_mtx2: np.ndarray
     ):
         dist = distance.euclidean(
-            encoding_face_mtx1, 
+            encoding_face_mtx1,
             encoding_face_mtx2
         )
 

@@ -2,12 +2,13 @@ from deep_translator import GoogleTranslator
 
 from pydantic import BaseModel, field_validator, model_serializer
 
+from utils.logging import LoggingMethods
 
-class PhotoUpload(BaseModel):
+
+class PhotoUpload(LoggingMethods, BaseModel):
     filename: str
     main_filepath: str
     about: str | None = None
-
 
     @field_validator('filename')
     def check_filename(cls, value):
@@ -25,24 +26,12 @@ class PhotoUpload(BaseModel):
 
         return new_value
 
-
     @property
     def filepath(self) -> str:
         return self.main_filepath + self.filename
-
 
     @model_serializer(mode='wrap')
     def serialize_model(self, handler) -> dict:
         result = handler(self)
         result['filepath'] = self.filepath
         return result
-
-
-
-if __name__ == '__main__':
-    filename = 'красивый медведь.хахаха .png'
-    about = 'AAAAAAA'
-
-    value = PhotoUpload(filename=filename, about=about)
-
-    print(value.filename, value.about)

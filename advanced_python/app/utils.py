@@ -1,5 +1,5 @@
 import bisect
-from typing import Union
+from typing import Union, List, Tuple
 
 from fastapi import UploadFile, File
 
@@ -17,13 +17,29 @@ from utils.sqler import (
 )
 
 from utils.config import PATH_TMP_PICTURES, BASE_DIR
+from utils.logging import log_raises, log_update_db
 
 
+@log_raises
 async def file_uploader(
     main_filepath: str,
     file: UploadFile = File(...),
     **kwargs
-):
+) -> PhotoUpload:
+    """Save photo as file
+
+    Parameters
+    ----------
+    main_filepath : str
+        main filepath for saving
+    file : UploadFile, optional
+        photo for saving, by default File(...)
+
+    Returns
+    -------
+    PhotoUpload
+        saved photo
+    """
     valid_data = PhotoUpload(
         filename=file.filename, main_filepath=main_filepath, **kwargs
     )
@@ -35,13 +51,32 @@ async def file_uploader(
     return valid_data
 
 
+@log_raises
+@log_update_db
 async def database_updater(
     valid_data: PhotoUpload,
     photo_datatable: Union[PhotoDatabase, PhotoTmp],
     encoding_datatable: Union[FaceEncodingsDatabase, FaceEncodingsTmp],
     db: Session
-):
+) -> Union[PhotoDatabase, PhotoTmp]:
+    """Add new photo one of the database
 
+    Parameters
+    ----------
+    valid_data : PhotoUpload
+        photo for uploading
+    photo_datatable : Union[PhotoDatabase, PhotoTmp]
+        table for uploading
+    encoding_datatable : Union[FaceEncodingsDatabase, FaceEncodingsTmp]
+        table for save embeddings
+    db : Session
+        database
+
+    Returns
+    -------
+    Union[PhotoDatabase, PhotoTmp]
+        uploaded photo
+    """
     data = valid_data.model_dump()
 
     data_for_datatable = {
@@ -71,10 +106,25 @@ async def database_updater(
     return new_photo
 
 
+@log_raises
 async def save_tmp_photo_info(
     image: UploadFile,
     db: Session
 ) -> int:
+    """Save temporary photo
+
+    Parameters
+    ----------
+    image : UploadFile
+        image for uploading
+    db : Session
+        database
+
+    Returns
+    -------
+    int
+        id of new tmp photo
+    """
     valid_data = await file_uploader(
         main_filepath=BASE_DIR+PATH_TMP_PICTURES, file=image
     )
@@ -89,12 +139,29 @@ async def save_tmp_photo_info(
     return new_tmp_photo.id
 
 
+@log_raises
 async def process_image(
     image_id: int,
-    image_table: Union[PhotoDatabase, PhotoTmp],
     encoding_table: Union[FaceEncodingsDatabase, FaceEncodingsTmp],
     db: Session
-):
+) -> List[Tuple[float, bool, int]]:
+    """Find the same pictures from database
+
+    Parameters
+    ----------
+    image_id : int
+        id to reference image
+    encoding_table : Union[FaceEncodingsDatabase, FaceEncodingsTmp]
+        one of the table with embeddings
+    db : Session
+        database
+
+    Returns
+    -------
+    List[Tuple[float, bool, int]], sorted
+        list with dist, is_same, record.photo_id
+        sorted by dist
+    """
     same_faces_idxs = []
     
     photo_encoding_mtxs = db.query(encoding_table).filter(
