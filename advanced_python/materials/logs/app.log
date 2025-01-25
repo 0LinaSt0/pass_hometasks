@@ -1,0 +1,62 @@
+2025-01-23 20:28:16,494 - INFO - Redirect to read_root road function
+2025-01-23 20:28:30,205 - INFO - Redirect to waiting_comparation road function
+2025-01-23 20:28:30,220 - INFO - Redirect to get_result road function
+2025-01-23 21:07:48,665 - INFO - Redirect to read_root road function
+2025-01-23 21:07:53,868 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:07:53,886 - INFO - Redirect to get_result road function
+2025-01-23 21:08:03,125 - INFO - Redirect to read_root road function
+2025-01-23 21:08:17,296 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:09:07,989 - ERROR - Raise during file_uploader function execution: HTTPSConnectionPool(host='translate.google.com', port=443): Read timed out. (read timeout=None)
+2025-01-23 21:09:07,990 - ERROR - Raise during save_tmp_photo_info function execution: 500: Server error: HTTPSConnectionPool(host='translate.google.com', port=443): Read timed out. (read timeout=None)
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
+2025-01-23 21:09:07,991 - ERROR - Raise during waiting_comparation function execution: 500: Server error: 500: Server error: HTTPSConnectionPool(host='translate.google.com', port=443): Read timed out. (read timeout=None)
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
+2025-01-23 21:09:16,730 - INFO - Redirect to read_root road function
+2025-01-23 21:09:26,490 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:10:21,887 - ERROR - Raise during file_uploader function execution: HTTPSConnectionPool(host='translate.google.com', port=443): Read timed out. (read timeout=None)
+2025-01-23 21:10:21,888 - ERROR - Raise during save_tmp_photo_info function execution: 500: Server error: HTTPSConnectionPool(host='translate.google.com', port=443): Read timed out. (read timeout=None)
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
+2025-01-23 21:10:21,888 - ERROR - Raise during waiting_comparation function execution: 500: Server error: 500: Server error: HTTPSConnectionPool(host='translate.google.com', port=443): Read timed out. (read timeout=None)
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
+2025-01-23 21:12:17,766 - INFO - Redirect to read_root road function
+2025-01-23 21:12:26,519 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:12:27,990 - INFO - Redirect to get_result road function
+2025-01-23 21:12:32,606 - INFO - Redirect to read_root road function
+2025-01-23 21:14:07,198 - INFO - Redirect to read_root road function
+2025-01-23 21:14:13,796 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:14:14,150 - INFO - The table <class 'utils.sqler.PhotoTmp'> was updated
+2025-01-23 21:14:14,164 - INFO - Redirect to get_result road function
+2025-01-23 21:15:22,930 - INFO - Redirect to upload_picture road function
+2025-01-23 21:15:23,240 - INFO - The table <class 'utils.sqler.PhotoDatabase'> was updated
+2025-01-23 21:15:23,246 - INFO - Redirect to read_root road function
+2025-01-23 21:15:28,089 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:15:28,108 - INFO - Redirect to get_result road function
+2025-01-23 21:15:41,272 - INFO - Redirect to delete_image road function
+2025-01-23 21:15:41,290 - ERROR - Raise during delete_image function execution: object dict can't be used in 'await' expression
+2025-01-23 21:15:44,832 - INFO - Redirect to read_root road function
+2025-01-23 21:17:35,134 - INFO - Redirect to upload_picture road function
+2025-01-23 21:17:35,426 - INFO - The table <class 'utils.sqler.PhotoDatabase'> was updated
+2025-01-23 21:17:35,430 - INFO - Redirect to read_root road function
+2025-01-23 21:17:40,680 - INFO - Redirect to delete_image road function
+2025-01-23 21:17:42,146 - INFO - Redirect to read_root road function
+2025-01-23 21:23:28,871 - INFO - Redirect to read_root road function
+2025-01-23 21:23:33,571 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:23:33,589 - INFO - Redirect to get_result road function
+2025-01-23 21:23:52,868 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:23:52,893 - INFO - Redirect to get_result road function
+2025-01-23 21:24:19,613 - INFO - Redirect to read_root road function
+2025-01-23 21:24:22,704 - INFO - Redirect to waiting_comparation road function
+2025-01-23 21:24:22,708 - ERROR - Raise during process_image function execution: euclidean() missing 1 required positional argument: 'v'
+2025-01-23 21:24:22,708 - ERROR - Raise during waiting_comparation function execution: 500: Server error: euclidean() missing 1 required positional argument: 'v'
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
+2025-01-23 21:29:31,140 - INFO - Redirect to read_root road function
+2025-01-23 21:29:36,818 - INFO - Redirect to upload_picture road function
+2025-01-23 21:29:36,819 - ERROR - Raise during file_uploader function execution: itr --> No support for the provided language.
+Please select on of the supported languages:
+{'afrikaans': 'af', 'albanian': 'sq', 'amharic': 'am', 'arabic': 'ar', 'armenian': 'hy', 'assamese': 'as', 'aymara': 'ay', 'azerbaijani': 'az', 'bambara': 'bm', 'basque': 'eu', 'belarusian': 'be', 'bengali': 'bn', 'bhojpuri': 'bho', 'bosnian': 'bs', 'bulgarian': 'bg', 'catalan': 'ca', 'cebuano': 'ceb', 'chichewa': 'ny', 'chinese (simplified)': 'zh-CN', 'chinese (traditional)': 'zh-TW', 'corsican': 'co', 'croatian': 'hr', 'czech': 'cs', 'danish': 'da', 'dhivehi': 'dv', 'dogri': 'doi', 'dutch': 'nl', 'english': 'en', 'esperanto': 'eo', 'estonian': 'et', 'ewe': 'ee', 'filipino': 'tl', 'finnish': 'fi', 'french': 'fr', 'frisian': 'fy', 'galician': 'gl', 'georgian': 'ka', 'german': 'de', 'greek': 'el', 'guarani': 'gn', 'gujarati': 'gu', 'haitian creole': 'ht', 'hausa': 'ha', 'hawaiian': 'haw', 'hebrew': 'iw', 'hindi': 'hi', 'hmong': 'hmn', 'hungarian': 'hu', 'icelandic': 'is', 'igbo': 'ig', 'ilocano': 'ilo', 'indonesian': 'id', 'irish': 'ga', 'italian': 'it', 'japanese': 'ja', 'javanese': 'jw', 'kannada': 'kn', 'kazakh': 'kk', 'khmer': 'km', 'kinyarwanda': 'rw', 'konkani': 'gom', 'korean': 'ko', 'krio': 'kri', 'kurdish (kurmanji)': 'ku', 'kurdish (sorani)': 'ckb', 'kyrgyz': 'ky', 'lao': 'lo', 'latin': 'la', 'latvian': 'lv', 'lingala': 'ln', 'lithuanian': 'lt', 'luganda': 'lg', 'luxembourgish': 'lb', 'macedonian': 'mk', 'maithili': 'mai', 'malagasy': 'mg', 'malay': 'ms', 'malayalam': 'ml', 'maltese': 'mt', 'maori': 'mi', 'marathi': 'mr', 'meiteilon (manipuri)': 'mni-Mtei', 'mizo': 'lus', 'mongolian': 'mn', 'myanmar': 'my', 'nepali': 'ne', 'norwegian': 'no', 'odia (oriya)': 'or', 'oromo': 'om', 'pashto': 'ps', 'persian': 'fa', 'polish': 'pl', 'portuguese': 'pt', 'punjabi': 'pa', 'quechua': 'qu', 'romanian': 'ro', 'russian': 'ru', 'samoan': 'sm', 'sanskrit': 'sa', 'scots gaelic': 'gd', 'sepedi': 'nso', 'serbian': 'sr', 'sesotho': 'st', 'shona': 'sn', 'sindhi': 'sd', 'sinhala': 'si', 'slovak': 'sk', 'slovenian': 'sl', 'somali': 'so', 'spanish': 'es', 'sundanese': 'su', 'swahili': 'sw', 'swedish': 'sv', 'tajik': 'tg', 'tamil': 'ta', 'tatar': 'tt', 'telugu': 'te', 'thai': 'th', 'tigrinya': 'ti', 'tsonga': 'ts', 'turkish': 'tr', 'turkmen': 'tk', 'twi': 'ak', 'ukrainian': 'uk', 'urdu': 'ur', 'uyghur': 'ug', 'uzbek': 'uz', 'vietnamese': 'vi', 'welsh': 'cy', 'xhosa': 'xh', 'yiddish': 'yi', 'yoruba': 'yo', 'zulu': 'zu'}
+2025-01-23 21:29:36,819 - ERROR - Raise during upload_picture function execution: 500: Server error: itr --> No support for the provided language.
+Please select on of the supported languages:
+{'afrikaans': 'af', 'albanian': 'sq', 'amharic': 'am', 'arabic': 'ar', 'armenian': 'hy', 'assamese': 'as', 'aymara': 'ay', 'azerbaijani': 'az', 'bambara': 'bm', 'basque': 'eu', 'belarusian': 'be', 'bengali': 'bn', 'bhojpuri': 'bho', 'bosnian': 'bs', 'bulgarian': 'bg', 'catalan': 'ca', 'cebuano': 'ceb', 'chichewa': 'ny', 'chinese (simplified)': 'zh-CN', 'chinese (traditional)': 'zh-TW', 'corsican': 'co', 'croatian': 'hr', 'czech': 'cs', 'danish': 'da', 'dhivehi': 'dv', 'dogri': 'doi', 'dutch': 'nl', 'english': 'en', 'esperanto': 'eo', 'estonian': 'et', 'ewe': 'ee', 'filipino': 'tl', 'finnish': 'fi', 'french': 'fr', 'frisian': 'fy', 'galician': 'gl', 'georgian': 'ka', 'german': 'de', 'greek': 'el', 'guarani': 'gn', 'gujarati': 'gu', 'haitian creole': 'ht', 'hausa': 'ha', 'hawaiian': 'haw', 'hebrew': 'iw', 'hindi': 'hi', 'hmong': 'hmn', 'hungarian': 'hu', 'icelandic': 'is', 'igbo': 'ig', 'ilocano': 'ilo', 'indonesian': 'id', 'irish': 'ga', 'italian': 'it', 'japanese': 'ja', 'javanese': 'jw', 'kannada': 'kn', 'kazakh': 'kk', 'khmer': 'km', 'kinyarwanda': 'rw', 'konkani': 'gom', 'korean': 'ko', 'krio': 'kri', 'kurdish (kurmanji)': 'ku', 'kurdish (sorani)': 'ckb', 'kyrgyz': 'ky', 'lao': 'lo', 'latin': 'la', 'latvian': 'lv', 'lingala': 'ln', 'lithuanian': 'lt', 'luganda': 'lg', 'luxembourgish': 'lb', 'macedonian': 'mk', 'maithili': 'mai', 'malagasy': 'mg', 'malay': 'ms', 'malayalam': 'ml', 'maltese': 'mt', 'maori': 'mi', 'marathi': 'mr', 'meiteilon (manipuri)': 'mni-Mtei', 'mizo': 'lus', 'mongolian': 'mn', 'myanmar': 'my', 'nepali': 'ne', 'norwegian': 'no', 'odia (oriya)': 'or', 'oromo': 'om', 'pashto': 'ps', 'persian': 'fa', 'polish': 'pl', 'portuguese': 'pt', 'punjabi': 'pa', 'quechua': 'qu', 'romanian': 'ro', 'russian': 'ru', 'samoan': 'sm', 'sanskrit': 'sa', 'scots gaelic': 'gd', 'sepedi': 'nso', 'serbian': 'sr', 'sesotho': 'st', 'shona': 'sn', 'sindhi': 'sd', 'sinhala': 'si', 'slovak': 'sk', 'slovenian': 'sl', 'somali': 'so', 'spanish': 'es', 'sundanese': 'su', 'swahili': 'sw', 'swedish': 'sv', 'tajik': 'tg', 'tamil': 'ta', 'tatar': 'tt', 'telugu': 'te', 'thai': 'th', 'tigrinya': 'ti', 'tsonga': 'ts', 'turkish': 'tr', 'turkmen': 'tk', 'twi': 'ak', 'ukrainian': 'uk', 'urdu': 'ur', 'uyghur': 'ug', 'uzbek': 'uz', 'vietnamese': 'vi', 'welsh': 'cy', 'xhosa': 'xh', 'yiddish': 'yi', 'yoruba': 'yo', 'zulu': 'zu'}
+Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../materials/logs/app.log for details
