@@ -70,3 +70,24 @@ Look to /Users/polina/Desktop/SKMaga/pass_hometasks/advanced_python/utils/../mat
 2025-01-29 22:44:17,633 - INFO - Redirect to upload_picture road function
 2025-01-29 22:44:18,343 - INFO - The table <class 'utils.sqler.PhotoDatabase'> was updated
 2025-01-29 22:44:18,347 - INFO - Redirect to read_root road function
+2025-01-29 23:00:42,602 - INFO - Redirect to read_root road function
+2025-01-29 23:00:44,868 - INFO - Redirect to waiting_comparation road function
+2025-01-29 23:00:44,883 - INFO - Redirect to get_result road function
+2025-01-29 23:00:46,084 - INFO - Redirect to read_root road function
+2025-01-29 23:00:52,090 - INFO - Redirect to waiting_comparation road function
+2025-01-29 23:00:52,105 - INFO - Redirect to get_result road function
+2025-01-29 23:00:55,025 - INFO - Redirect to read_root road function
+2025-01-29 23:01:02,494 - INFO - Redirect to waiting_comparation road function
+2025-01-29 23:01:02,883 - INFO - The table <class 'utils.sqler.PhotoTmp'> was updated
+2025-01-29 23:01:02,894 - INFO - Redirect to get_result road function
+2025-01-29 23:01:06,096 - INFO - Redirect to read_root road function
+2025-01-29 23:01:13,422 - INFO - Redirect to delete_image road function
+2025-01-29 23:01:14,836 - INFO - Redirect to read_root road function
+2025-01-29 23:10:02,610 - INFO - Redirect to read_root road function
+2025-01-29 23:10:06,862 - INFO - Redirect to waiting_comparation road function
+2025-01-29 23:10:06,882 - INFO - Redirect to get_result road function
+2025-01-29 23:10:08,482 - INFO - Redirect to read_root road function
+2025-01-29 23:10:15,790 - INFO - Redirect to waiting_comparation road function
+2025-01-29 23:10:16,177 - INFO - The table <class 'utils.sqler.PhotoTmp'> was updated
+2025-01-29 23:10:16,186 - INFO - Redirect to get_result road function
+2025-01-29 23:10:17,958 - INFO - Redirect to read_root road function

@@ -8,6 +8,15 @@ from scipy.spatial import distance
 from utils.logging import LoggingMethods
 
 
+class FaceCascadeWrapper:
+    def __init__(self, cascade_path):
+        self.cascade = cv2.CascadeClassifier(cascade_path)
+
+    def detect_faces(self, gray_image):
+        return self.cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5)
+
+
+
 class FaceDetection(LoggingMethods):
     ''' Class includes method for:
         - detection faces in the images with Haar Cascades;
@@ -15,7 +24,7 @@ class FaceDetection(LoggingMethods):
     '''
 
     # Load Haar Cascade for face detection
-    FACE_CASCADE = cv2.CascadeClassifier(
+    FACE_CASCADE = FaceCascadeWrapper(
         cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
     )
 
@@ -32,10 +41,8 @@ class FaceDetection(LoggingMethods):
 
         gray_image = cv2.cvtColor(mtx_photo, cv2.COLOR_BGR2GRAY)
 
-        faces = cls.FACE_CASCADE.detectMultiScale(
-            gray_image,
-            scaleFactor=1.1,
-            minNeighbors=5
+        faces = cls.FACE_CASCADE.detect_faces(
+            gray_image
         )
 
         if len(faces) != 0:

@@ -57,6 +57,34 @@ def log_raises(func):
     return wrapper
 
 
+def log_raises_not_async(func):
+    """Logging raises
+
+    Parameters
+    ----------
+    func : 
+        any execute function
+
+    Raises
+    ------
+    HTTPException
+        re-raser of func raise
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            logging.error(
+                f'Raise during {func.__name__} function execution: {e}'
+            )
+            raise HTTPException(
+                status_code=500,
+                detail=f'Server error: {e}\nLook to {LOG_FILEPATH} for details'
+            )
+    return wrapper
+
+
 def log_update_db(func):
     @wraps(func)
     async def wrapper(*args, **kwargs):
@@ -77,4 +105,4 @@ class LoggingMethods:
         super().__init_subclass__(**kwargs)
         for attr, value in cls.__dict__.items():
             if callable(value):
-                setattr(cls, attr, log_raises(value))
+                setattr(cls, attr, log_raises_not_async(value))
