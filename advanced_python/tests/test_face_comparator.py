@@ -7,7 +7,7 @@ from face_comparator.face_detector import FaceDetection
 import numpy as np
 import pytest
 from unittest.mock import patch
-from face_comparator.face_detector import FaceDetection
+from face_comparator.face_detector import FaceDetection, FaceComparator
 
 
 class TestFaceDetection:
@@ -52,3 +52,36 @@ class TestFaceDetection:
         # Assert that no faces were found
         assert len(result) == 0
 
+
+class TestFaceComparator:
+    @pytest.fixture
+    def face_comparator(self):
+        return FaceComparator()
+    
+    @patch('scipy.spatial.distance.euclidean')
+    def test_faces_euclidean_distance_more(
+        self, mock_euclidean, face_comparator
+    ):
+        mock_euclidean.return_value = 0.7
+
+        dist, is_same = face_comparator.faces_euclidean_distance(
+            np.array([]), np.array([])
+        )
+
+        assert dist == 0.7
+        # Since 0.5 < THRESHOLD (0.6), is_same should be True
+        assert is_same is False
+    
+    @patch('scipy.spatial.distance.euclidean')
+    def test_faces_euclidean_distance_less(
+        self, mock_euclidean, face_comparator
+    ):
+        mock_euclidean.return_value = 0.5 
+
+        dist, is_same = face_comparator.faces_euclidean_distance(
+            np.array([]), np.array([])
+        )
+
+        assert dist == 0.5
+        # Since 0.5 < THRESHOLD (0.6), is_same should be True
+        assert is_same is True
