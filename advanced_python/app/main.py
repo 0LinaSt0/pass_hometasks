@@ -170,8 +170,6 @@ async def get_result(
     same_faces = request.session.get('same_faces')
     refer_filepath = request.session.get('refer_filepath')
 
-    print(refer_filepath)
-
     photos = db.query(PhotoDatabase).filter(
         PhotoDatabase.id.in_([el[2] for el in same_faces])
     ).all()

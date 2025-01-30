@@ -89,9 +89,10 @@ def log_update_db(func):
     @wraps(func)
     async def wrapper(*args, **kwargs):
         result = await func(*args, **kwargs)
-        logger.info(
-            f'The table {kwargs["photo_datatable"]} was updated'
-        )
+        if 'photo_datatable' in set(kwargs.keys()):
+            logger.info(
+                f'The table {kwargs["photo_datatable"]} was updated'
+            )
 
         return result
 

@@ -8,6 +8,7 @@ import numpy as np
 import pytest
 from unittest.mock import patch
 from face_comparator.face_detector import FaceDetection, FaceComparator
+from face_comparator.utils import encoding_to_json, encoding_from_json
 
 
 class TestFaceDetection:
@@ -85,3 +86,39 @@ class TestFaceComparator:
         assert dist == 0.5
         # Since 0.5 < THRESHOLD (0.6), is_same should be True
         assert is_same is True
+
+
+class TestEncoders:
+    @pytest.fixture
+    def encoded_arr(self):
+        return np.zeros((5, 5), dtype=np.uint8)
+    
+    @pytest.fixture
+    def encoded_list(self):
+        return [
+            '0;0;0;0;0',
+            '0;0;0;0;0',
+            '0;0;0;0;0',
+            '0;0;0;0;0',
+            '0;0;0;0;0'
+        ]
+    
+    def test_encoding_to_json(
+        sefl, encoded_arr, encoded_list
+    ):
+        result = encoding_to_json(encoded_arr)
+
+        assert len(result) == encoded_arr.shape[0]
+        assert result == encoded_list
+
+
+    def test_encoding_from_json(
+        self, encoded_arr, encoded_list
+    ):
+        result = encoding_from_json(';'.join(encoded_list))
+
+        assert result.shape == encoded_arr.flatten().shape
+        assert np.array_equal(result, encoded_arr.flatten())
+
+
+

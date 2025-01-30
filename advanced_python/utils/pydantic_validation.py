@@ -1,4 +1,4 @@
-from deep_translator import GoogleTranslator
+from unidecode import unidecode
 
 from pydantic import BaseModel, field_validator, model_serializer
 
@@ -13,16 +13,21 @@ class PhotoUpload(LoggingMethods, BaseModel):
     @field_validator('filename')
     def check_filename(cls, value):
         i_extention = value.rfind('.')
+        if i_extention == -1:
+            raise ValueError('Filename must include extention')
         main_filename = value[:i_extention]
         extention_filename = value[i_extention:]
 
-        translated_filename = GoogleTranslator(
-            source='auto', target='en'
-        ).translate(main_filename)
+        try:
+            unidecode_filename = unidecode(
+                main_filename
+            )
+        except:
+            unidecode_filename = main_filename
 
-        translated_filename = translated_filename.replace(' ', '_')
+        unidecode_filename = unidecode_filename.replace(' ', '_')
 
-        new_value = translated_filename + extention_filename
+        new_value = unidecode_filename + extention_filename
 
         return new_value
 
