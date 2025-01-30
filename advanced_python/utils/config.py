@@ -1,7 +1,6 @@
 import os
 
 
-
 BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
 
 LOG_FILEPATH = BASE_DIR + 'materials/logs/app.log'

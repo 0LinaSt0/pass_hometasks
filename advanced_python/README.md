@@ -15,12 +15,18 @@ Web приложение по поиску похожих людей. Функц
 
 ## Как запустить?
 
-> Микросервис был разработан на Python 3.13.1
+> Микросервис был разработан на Python 3.13.1 под MacOS
 
 1. Создать и активировать виртуальное окружение
 2. Установить зависимости
 ```bash
 pip install -r requirements.txt
+```
+> Если возникли  проблемы с face_recognition, то можно
+> попробовать поставить его из репозитория
+```bash
+pip install wheel setuptools pip --upgrade
+pip install git+https://github.com/ageitgey/face_recognition_models --verbose
 ```
 3. Из корня запустить FastAPI
 ```bash
@@ -65,4 +71,4 @@ cd tests
 - [x] Docstring и комментарии кода
 - [x] **Логирование** с применением **декораторов**
 - [x] **Pytest** тестирование
-- [ ] Финальная версия requirement.txt
+- [x] Финальная версия requirement.txt

@@ -6,11 +6,8 @@ from sqlalchemy.exc import IntegrityError
 # Adjust import as necessary
 from utils.sqler import (
     Base, 
-    PhotoDatabase, 
-    PhotoTmp, 
-    FaceEncodingsDatabase, 
-    FaceEncodingsTmp, 
-    get_db
+    PhotoDatabase,
+    FaceEncodingsDatabase
 )
 
 TEST_DATABASE_URL = "sqlite:///:memory:"
