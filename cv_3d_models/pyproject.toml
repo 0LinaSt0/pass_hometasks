@@ -1,0 +1,22 @@
+[project]
+name = "cv-3d-models"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "msalena"}
+]
+readme = "README.md"
+requires-python = "==3.12.9"
+dependencies = [
+    "open3d (>=0.19.0,<0.20.0)",
+    "numpy (>=2.3.3,<3.0.0)",
+    "plotly (>=6.3.1,<7.0.0)",
+    "webrtcvad (>=2.0.10,<3.0.0)",
+    "tensorboard (>=2.20.0,<3.0.0)",
+    "protobuf (>=6.32.1,<7.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
