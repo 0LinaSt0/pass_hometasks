@@ -1,10 +1,10 @@
 # Setup: Аналитическая платформа для мониторинга COVID-19
 
 ## Структура проекта
-- **data_preprocess.ipynb:** Jupyter Notebook с предобработкой, SQL, PySpark и визуализацией.
-- **report.pdf:** презентация в PDF.
-- **README.md:** инструкции по развертыванию HDFS и запуску запросов.
-- **docker-compose.yml:** файл-сборщик.
+- **data_preprocess.ipynb:** Jupyter Notebook с предобработкой, SQL, PySpark и визуализацией
+- **report.pdf:** презентация в PDF
+- **README.md:** инструкции по развертыванию HDFS и запуску запросов
+- **docker-compose.yml:** файл-сборщик
 - **hadoop_conf:** папка с минимальными конфигурациями для hdfs контейнеров
 - **metadata_cleaned.xml & hdfs-site.xml:** предобработанный датасет в двух форматах
 
@@ -44,7 +44,7 @@ hdfs dfs -chown -R jovyan:jovyan /user/jovyan/covid_dataset
 hdfs dfs -chmod -R 775 /user/jovyan/covid_dataset
 ```
 
-4. Создать каталог warehouse и выдать права (в hdfs):
+4. Создать каталог warehouse и выдать права:
 ```bash
 hdfs dfs -mkdir -p /user/jovyan/warehouse
 
