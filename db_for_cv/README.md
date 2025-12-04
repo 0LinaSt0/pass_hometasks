@@ -2,7 +2,7 @@
 
 ## Структура проекта
 - **data_preprocess.ipynb:** Jupyter Notebook с предобработкой, SQL, PySpark и визуализацией.
-- **report.pdf:** Презентация в PDF.
+- **report.pdf:** презентация в PDF.
 - **README.md:** инструкции по развертыванию HDFS и запуску запросов.
 - **docker-compose.yml:** файл-сборщик.
 - **hadoop_conf:** папка с минимальными конфигурациями для hdfs контейнеров
