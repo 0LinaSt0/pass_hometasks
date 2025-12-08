@@ -1,6 +1,5 @@
 import sys
 
-# REPLACE TO YOUR PATH
 DATAPATH = '/home/msalena/SFMaga/main_repo/mlops/sources/files_hw_DE'
 
 sys.path.insert(0, DATAPATH)
@@ -16,7 +15,6 @@ import pandas as pd
 from filelock import FileLock
 from transform_script import transfrom
 
-
 PROFIT_TABLE_FILE = Path(DATAPATH) / 'profit_table.csv'
 OUTPUT_FILE = Path(DATAPATH) / 'flags_activity.csv'
 LOCK_FILE = str(OUTPUT_FILE) + '.lock'
@@ -29,8 +27,6 @@ default_args = {
     'retries': 1,
 }
 
-
-
 def save_results_safely(df_result):
     '''For safe save'''
     lock = FileLock(LOCK_FILE, timeout=10) 
@@ -40,8 +36,7 @@ def save_results_safely(df_result):
         else:
             df_result.to_csv(OUTPUT_FILE, index=False)
 
-
-def process_product(date=None, **context):
+def process_product(product, date=None, **context):
     if not os.path.exists(PROFIT_TABLE_FILE):
         print(f'Data file not found: {PROFIT_TABLE_FILE}')
     else:
@@ -51,21 +46,21 @@ def process_product(date=None, **context):
             print(f'Data file is empty: {PROFIT_TABLE_FILE}')
         else:
             if date is None:
-                # Get date for passing to the transfrom
-                date = context['logical_date']
+                # Get previous month date for calculation (5th of current month -> previous month)
+                date = context['logical_date'].subtract(months=1)
             
             date_str = date.strftime('%Y-%m-%d')
-
-            print('DATE FOR CALCULATING:', date)
+            print(f'PRODUCT: {product}, DATE FOR CALCULATING: {date_str}')
 
             before_size = 0
             if os.path.exists(OUTPUT_FILE):
                 before_size = pd.read_csv(OUTPUT_FILE).shape[0]
-                print('DF COUNT BEFORE:', before_size)
+                print(f'DF COUNT BEFORE: {before_size}')
             
-            df_result = transfrom(df, date_str)
+            # Filter data for specific product and calculate
+            df_result = transfrom(df, date_str, product_list=[product,])
             
-            print('DF COUNT AFTER:', df_result.shape[0] + before_size)
+            print(f'DF COUNT AFTER FOR {product}: {df_result.shape[0]}')
 
 
             # Save results
@@ -75,7 +70,7 @@ def process_product(date=None, **context):
 with DAG(
     'polina_khristoforova',
     default_args=default_args,
-    schedule_interval='0 0 5 * *',  # every 5 day of every month at 12am
+    schedule_interval='0 0 5 * *',  # every 5th day of every month at 12am
     catchup=False,
     max_active_runs=1,
 ) as dag:
@@ -85,6 +80,6 @@ with DAG(
         task = PythonOperator(
             task_id=f'polina_khristoforova_{product}',
             python_callable=process_product,
-            op_kwargs={'date': pendulum.datetime(year=2024, month=1, day=5).in_timezone('Europe/Moscow')},
+            op_kwargs={'product': product},
         )
         tasks.append(task)
