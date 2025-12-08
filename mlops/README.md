@@ -1,13 +1,13 @@
 # AIRFLOW SETUP
 
-## ~~~~~~~> 1. Virtualenv:
+## ~~~> 1. Virtualenv:
 ```bash
 python3.8 -m venv .venv;
 source .venv/bin/activate;
 pip install --upgrade pip;
 ```
 
-## ~~~~~~~> 2. Install and setup MySQL
+## ~~~> 2. Install and setup MySQL
 ```bash
 sudo apt-get install mysql-server && sudo /etc/init.d/mysql start.;
 
