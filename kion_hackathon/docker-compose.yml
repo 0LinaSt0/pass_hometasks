@@ -1,0 +1,25 @@
+services:
+  kion_hackathon_msalena:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${UID}       # UID пользователя хоста
+        GROUP_ID: ${GID}      # GID пользователя хоста
+    image: kion-app-cuda:latest
+    container_name: kion_hackathon_msalena
+    working_dir: /app
+    volumes:
+      - ../../main_repo:/app/main_repo
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.ssh:/home/devuser/.ssh
+    tty: true
+    stdin_open: true
+    command: ["/bin/bash"]
+    ports:
+      - "8888:8888"
+    deploy: {} 
+    gpus: all
+    user: devuser
+
+
