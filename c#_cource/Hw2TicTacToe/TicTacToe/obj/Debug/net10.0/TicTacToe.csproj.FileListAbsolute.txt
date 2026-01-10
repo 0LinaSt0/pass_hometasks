@@ -1,0 +1,14 @@
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\TicTacToe.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\TicTacToe.AssemblyInfoInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\TicTacToe.AssemblyInfo.cs
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\TicTacToe.csproj.CoreCompileInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\bin\Debug\net10.0\TicTacToe.exe
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\bin\Debug\net10.0\TicTacToe.deps.json
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\bin\Debug\net10.0\TicTacToe.runtimeconfig.json
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\bin\Debug\net10.0\TicTacToe.dll
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\bin\Debug\net10.0\TicTacToe.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\TicTacToe.dll
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\refint\TicTacToe.dll
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\TicTacToe.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\TicTacToe.genruntimeconfig.cache
+C:\Users\msalena\Downloads\c#_cource\Hw2TicTacToe\TicTacToe\obj\Debug\net10.0\ref\TicTacToe.dll
