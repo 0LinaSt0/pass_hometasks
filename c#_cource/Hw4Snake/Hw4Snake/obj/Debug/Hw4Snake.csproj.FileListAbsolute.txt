@@ -1,0 +1,9 @@
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\bin\Debug\Hw4Snake.exe.config
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\bin\Debug\Hw4Snake.exe
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\bin\Debug\Hw4Snake.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\obj\Debug\Hw4Snake.csproj.AssemblyReference.cache
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\obj\Debug\Hw4Snake.Properties.Resources.resources
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\obj\Debug\Hw4Snake.csproj.GenerateResource.cache
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\obj\Debug\Hw4Snake.csproj.CoreCompileInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\obj\Debug\Hw4Snake.exe
+C:\Users\msalena\Downloads\c#_cource\Hw4Snake\Hw4Snake\obj\Debug\Hw4Snake.pdb
