@@ -1,0 +1,10 @@
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\obj\Debug\Hw5FindCouple.csproj.AssemblyReference.cache
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\obj\Debug\Hw5FindCouple.Properties.Resources.resources
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\obj\Debug\Hw5FindCouple.csproj.GenerateResource.cache
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\obj\Debug\Hw5FindCouple.csproj.CoreCompileInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\bin\Debug\Hw5FindCouple.exe.config
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\bin\Debug\Hw5FindCouple.exe
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\bin\Debug\Hw5FindCouple.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\obj\Debug\Hw5FindC.9665E6C1.Up2Date
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\obj\Debug\Hw5FindCouple.exe
+C:\Users\msalena\Downloads\c#_cource\Hw5FindCouple\Hw5FindCouple\obj\Debug\Hw5FindCouple.pdb
