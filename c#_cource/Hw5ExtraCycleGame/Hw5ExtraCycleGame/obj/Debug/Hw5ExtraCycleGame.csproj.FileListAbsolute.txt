@@ -1,0 +1,15 @@
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\obj\Debug\Hw5ExtraCycleGame.csproj.AssemblyReference.cache
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\obj\Debug\Hw5ExtraCycleGame.Properties.Resources.resources
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\obj\Debug\Hw5ExtraCycleGame.csproj.GenerateResource.cache
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\obj\Debug\Hw5ExtraCycleGame.csproj.CoreCompileInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\Hw5ExtraCycleGame.exe.config
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\Hw5ExtraCycleGame.exe
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\Hw5ExtraCycleGame.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\sfml-audio.dll
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\sfml-graphics.dll
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\sfml-learning.dll
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\sfml-system.dll
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\bin\Debug\sfml-window.dll
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\obj\Debug\Hw5Extra.7B521A21.Up2Date
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\obj\Debug\Hw5ExtraCycleGame.exe
+C:\Users\msalena\Downloads\c#_cource\Hw5ExtraCycleGame\Hw5ExtraCycleGame\obj\Debug\Hw5ExtraCycleGame.pdb
