@@ -1,0 +1,15 @@
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\obj\Debug\Hw3CatGameSFML.csproj.AssemblyReference.cache
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\obj\Debug\Hw3CatGameSFML.Properties.Resources.resources
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\obj\Debug\Hw3CatGameSFML.csproj.GenerateResource.cache
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\obj\Debug\Hw3CatGameSFML.csproj.CoreCompileInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\Hw3CatGameSFML.exe.config
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\Hw3CatGameSFML.exe
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\Hw3CatGameSFML.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\sfml-audio.dll
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\sfml-graphics.dll
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\sfml-learning.dll
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\sfml-system.dll
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\bin\Debug\sfml-window.dll
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\obj\Debug\Hw3CatGa.6BB9CF83.Up2Date
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\obj\Debug\Hw3CatGameSFML.exe
+C:\Users\msalena\Downloads\c#_cource\Hw3CatGameSFML\Hw3CatGameSFML\obj\Debug\Hw3CatGameSFML.pdb
