@@ -1,0 +1,10 @@
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\bin\Debug\Hw6ArkanoidStartOOP.exe.config
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\bin\Debug\Hw6ArkanoidStartOOP.exe
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\bin\Debug\Hw6ArkanoidStartOOP.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\obj\Debug\Hw6ArkanoidStartOOP.csproj.AssemblyReference.cache
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\obj\Debug\Hw6ArkanoidStartOOP.Properties.Resources.resources
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\obj\Debug\Hw6ArkanoidStartOOP.csproj.GenerateResource.cache
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\obj\Debug\Hw6ArkanoidStartOOP.csproj.CoreCompileInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\obj\Debug\Hw6Arkan.76DD2F6A.Up2Date
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\obj\Debug\Hw6ArkanoidStartOOP.exe
+C:\Users\msalena\Downloads\c#_cource\Hw6ArkanoidStartOOP\Hw6ArkanoidStartOOP\obj\Debug\Hw6ArkanoidStartOOP.pdb
