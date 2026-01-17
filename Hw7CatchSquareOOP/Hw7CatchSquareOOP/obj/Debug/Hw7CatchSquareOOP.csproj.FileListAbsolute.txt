@@ -1,0 +1,14 @@
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\bin\Debug\Hw7CatchSquareOOP.exe.config
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\bin\Debug\Hw7CatchSquareOOP.exe
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\bin\Debug\Hw7CatchSquareOOP.pdb
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\bin\Debug\sfml-audio.dll
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\bin\Debug\sfml-graphics.dll
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\bin\Debug\sfml-system.dll
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\bin\Debug\sfml-window.dll
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\obj\Debug\Hw7CatchSquareOOP.csproj.AssemblyReference.cache
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\obj\Debug\Hw7CatchSquareOOP.Properties.Resources.resources
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\obj\Debug\Hw7CatchSquareOOP.csproj.GenerateResource.cache
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\obj\Debug\Hw7CatchSquareOOP.csproj.CoreCompileInputs.cache
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\obj\Debug\Hw7Catch.BD036855.Up2Date
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\obj\Debug\Hw7CatchSquareOOP.exe
+C:\Users\msalena\Downloads\c#_cource\Hw7CatchSquareOOP\Hw7CatchSquareOOP\obj\Debug\Hw7CatchSquareOOP.pdb

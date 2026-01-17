@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|c:\\users\\msalena\\downloads\\c#_cource\\hw7catchsquareoop\\hw7catchsquareoop\\mathf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|solutionrelative:hw7catchsquareoop\\mathf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|c:\\users\\msalena\\downloads\\c#_cource\\hw7catchsquareoop\\hw7catchsquareoop\\square\\square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|solutionrelative:hw7catchsquareoop\\square\\square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|c:\\users\\msalena\\downloads\\c#_cource\\hw7catchsquareoop\\hw7catchsquareoop\\square\\squarelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|solutionrelative:hw7catchsquareoop\\square\\squarelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|c:\\users\\msalena\\downloads\\c#_cource\\hw7catchsquareoop\\hw7catchsquareoop\\square\\blacksquare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|solutionrelative:hw7catchsquareoop\\square\\blacksquare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|c:\\users\\msalena\\downloads\\c#_cource\\hw7catchsquareoop\\hw7catchsquareoop\\square\\redsquare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|solutionrelative:hw7catchsquareoop\\square\\redsquare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|c:\\users\\msalena\\downloads\\c#_cource\\hw7catchsquareoop\\hw7catchsquareoop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|solutionrelative:hw7catchsquareoop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|c:\\users\\msalena\\downloads\\c#_cource\\hw7catchsquareoop\\hw7catchsquareoop\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DFAE0A-9527-4882-AC1E-1906DBCBB305}|Hw7CatchSquareOOP\\Hw7CatchSquareOOP.csproj|solutionrelative:hw7catchsquareoop\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Game.cs",
+              "DocumentMoniker": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Game.cs",
+              "RelativeDocumentMoniker": "Hw7CatchSquareOOP\\Game.cs",
+              "ToolTip": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Game.cs",
+              "RelativeToolTip": "Hw7CatchSquareOOP\\Game.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-17T11:09:25.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Program.cs",
+              "RelativeDocumentMoniker": "Hw7CatchSquareOOP\\Program.cs",
+              "ToolTip": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Program.cs",
+              "RelativeToolTip": "Hw7CatchSquareOOP\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T18:22:43.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RedSquare.cs",
+              "DocumentMoniker": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\RedSquare.cs",
+              "RelativeDocumentMoniker": "Hw7CatchSquareOOP\\Square\\RedSquare.cs",
+              "ToolTip": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\RedSquare.cs",
+              "RelativeToolTip": "Hw7CatchSquareOOP\\Square\\RedSquare.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-17T09:31:22.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BlackSquare.cs",
+              "DocumentMoniker": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\BlackSquare.cs",
+              "RelativeDocumentMoniker": "Hw7CatchSquareOOP\\Square\\BlackSquare.cs",
+              "ToolTip": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\BlackSquare.cs",
+              "RelativeToolTip": "Hw7CatchSquareOOP\\Square\\BlackSquare.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-17T09:31:11.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SquareList.cs",
+              "DocumentMoniker": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\SquareList.cs",
+              "RelativeDocumentMoniker": "Hw7CatchSquareOOP\\Square\\SquareList.cs",
+              "ToolTip": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\SquareList.cs",
+              "RelativeToolTip": "Hw7CatchSquareOOP\\Square\\SquareList.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-17T10:16:43.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Square.cs",
+              "DocumentMoniker": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\Square.cs",
+              "RelativeDocumentMoniker": "Hw7CatchSquareOOP\\Square\\Square.cs",
+              "ToolTip": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Square\\Square.cs",
+              "RelativeToolTip": "Hw7CatchSquareOOP\\Square\\Square.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAUwBwAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T18:29:43.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Mathf.cs",
+              "DocumentMoniker": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Mathf.cs",
+              "RelativeDocumentMoniker": "Hw7CatchSquareOOP\\Mathf.cs",
+              "ToolTip": "C:\\Users\\msalena\\Downloads\\c#_cource\\Hw7CatchSquareOOP\\Hw7CatchSquareOOP\\Mathf.cs",
+              "RelativeToolTip": "Hw7CatchSquareOOP\\Mathf.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-17T10:30:12.095Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
